@@ -1,6 +1,8 @@
 # 巡风 [![License](https://img.shields.io/aur/license/yaourt.svg)](https://github.com/ysrc/xunfeng/blob/master/LICENSE)
 ----------
 
+> owenjiao
+
 **巡风**是一款适用于企业内网的`漏洞快速应急、巡航扫描`系统，通过搜索功能可清晰的了解内部网络资产分布情况，并且可指定漏洞插件对搜索结果进行快速漏洞检测并输出结果报表。
 
 **本软件只做初步探测，无攻击性行为。请使用者遵守《[中华人民共和国网络安全法](http://www.npc.gov.cn/npc/xinwen/2016-11/07/content_2001605.htm)》，勿将巡风用于非授权的测试，YSRC/同程安全应急响应中心/同程网络科技股份有限公司不负任何连带法律责任。**
