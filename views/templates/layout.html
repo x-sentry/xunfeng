@@ -26,110 +26,91 @@
         <![endif]-->
 
     <script src="static/js/modernizr.min.js"></script>
+    <style>
+        .nav-top {
+            background-color: #0D182E;
+            border-radius: 0;
+            border: 0;
+            border-bottom: 1px solid #1D7480;
+        }
 
+        .logo-title {
+            font-size: 24px;
+            font-weight: 500;
+            color: #e1e1e1;
+            line-height: 50px;
+        }
+        .logo-title:hover {
+            color: #e1e1e1;
+        }
+        .nav-item {
+            padding: 0 20px;
+            color:#e1e1e1 !important ;
+
+        }
+         .nav-item:hover{
+            background-color: #172440;
+         }
+    </style>
 
 </head>
 
 
-<body>
+<body style="background-color:#172440 ">
 
 <!-- Navigation Bar-->
 <header id="topnav">
-    <div class="topbar-main">
-        <div class="container">
-
-            <!-- LOGO -->
-            <div class="topbar-left">
-                <a href="/filter" class="logo"><span>巡风</span></a>
+    <nav class="navbar navbar-default nav-top" style="">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class=" logo-title" href="#">天格统一扫描平台</a>
             </div>
-            <!-- End Logo container-->
-
-
-            <ul class="nav navbar-nav navbar-right pull-right">
-                <li>
-                    <!-- Notification -->
-                    <div class="notification-box">
-                        <ul class="list-inline m-b-0">
-                            <li>
-                                <a href="javascript:void(0);" class="right-bar-toggle">
-                                    <i class="zmdi zmdi-notifications-none"></i>
-                                </a>
-                                <div class="noti-dot" style="display: none">
-                                    <span class="dot"></span>
-                                    <span class="pulse"></span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- End Notification bar -->
-                </li>
-                <li>
-                    <a href="/loginout">退出</a>
-                </li>
-            </ul>
-            <div class="menu-item">
-                <!-- Mobile menu toggle-->
-                <a class="navbar-toggle">
-                    <div class="lines">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </a>
-                <!-- End mobile menu toggle-->
-            </div>
-
-
-        </div>
-    </div>
-    </div>
-    </div>
-
-    <div class="navbar-custom">
-        <div class="container">
-            <div id="navigation">
-                <!-- Navigation Menu-->
-                <ul class="navigation-menu">
-                    <li class="has-submenu">
-                        <a href="/filter"><i class="zmdi zmdi-search"></i> <span> 搜索 </span> </a>
-                        <ul class="submenu">
-                            <li><a href="/filter">条件筛选</a></li>
-                            <li><a href="/">自定义</a></li>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav" style="margin-left:150px;">
+                    <li class="current-menu nav-item" style="background-color:#172440;color:#e1e1e1; "><a href="#">搜索 <span
+                            class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a href="#" style="color:#e1e1e1;">任务</a></li>
+                    <li class="nav-item"><a href="#"style="color:#e1e1e1;">插件</a></li>
+                    <li class="nav-item"><a href="#" style="color:#e1e1e1;">统计</a></li>
+                    <li class="dropdown nav-item">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false" style="color:#e1e1e1;">搜索 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="/task"><i class="zmdi zmdi-archive"></i> <span> 任务 </span> </a>
-                    </li>
-                    <li>
-                        <a href="/plugin"><i class="zmdi zmdi-puzzle-piece"></i> <span> 插件 </span> </a>
-                    </li>
-                    <li>
-                        <a href="/analysis"><i class="zmdi zmdi-widgets"></i> <span> 统计 </span> </a>
-                    </li>
-                    <li class="has-submenu">
-                        <a href="/config?config=nascan"><i class="zmdi zmdi-settings"></i> <span> 配置 </span> </a>
-                        <ul class="submenu">
-                            <li><a href="/config?config=nascan">爬虫引擎</a></li>
-                            <li><a href="/config?config=vulscan">扫描引擎</a></li>
-                        </ul>
-
-                    </li>
-
                 </ul>
-                <!-- End navigation menu  -->
-            </div>
-        </div>
-    </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" style="color:#d9d9d9;">退出</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
 </header>
 <!-- End Navigation Bar-->
 
 
-<div class="wrapper">
+<div class="wrapper" style="margin-top:0;">
 
     {% block webinfo %}
 
     {% endblock %}
-    <div class="side-bar right-bar">
+    <!--<div class="side-bar right-bar">
         <a href="javascript:void(0);" class="right-bar-toggle">
             <i class="zmdi zmdi-close-circle-o"></i>
         </a>
@@ -138,7 +119,7 @@
             <ul class="list-group list-no-border user-list">
             </ul>
         </div>
-    </div>
+    </div>-->
 
 </div>
 <!-- jQuery  -->
@@ -159,6 +140,7 @@
 <script src="static/js/jquery.app.js"></script>
 <script src="static/plugin/sweetalert/sweetalert.min.js"></script>
 <script src="static/buss/js/common.js"></script>
+<script src="static/js/echarts.min.js"></script>
 <div style="display: none">Version:beta 1.1.0</div>
 </body>
 </html>
