@@ -19,13 +19,14 @@
         }
 
         .content-title {
+            padding-left:10px;
             font-size: 18px;
             font-weight: 500;
-            padding-top: 20px;
             margin-left: 20px;
             color: rgba(111, 127, 176, 0.9);
             color: #25A5DE;
             color: #e2e2e2;
+            border-left:3px solid teal;
         }
 
         .content-title-pie {
@@ -60,7 +61,8 @@
             width: 100%;
             color: #fff;
             background-color: #0D182E;
-            border: 1px solid #132D52;
+            border: 1px solid #1c2640;
+            box-shadow: inset 0 1px 1px rgba(50, 38, 123, 0.1), 0 0 8px rgba(119, 139, 226, 0.3);
         }
 
         .main-top-pie-tab tr td {
@@ -72,8 +74,10 @@
             color: #e2e2e2;
             font-size: 18px;
             font-weight: 500;
-            text-align: center;
-            margin: 25px 0 -10px 200px;
+            text-align: left;
+            margin: 20px 0 0 20px;
+            padding-left:10px;
+            border-left:3px solid teal;
         }
 
         .main-top-pie-tab tr td .top-pie {
@@ -83,10 +87,10 @@
 
         .main-top-pie-tab tr td .tab-pie-description {
             margin: -15px 0 15px 0;
-            color:#A5A7AA;
+            color: #A5A7AA;
         }
 
-         .main-first-row {
+        .main-first-row {
             padding-right: 15px;
             margin-bottom: 10px;
             margin-top: -10px;
@@ -99,9 +103,10 @@
         }
 
         .photograph-content {
+            padding-top:20px;
             background-color: #0D182E;
-            border: 1px solid #10214B;
-            /*box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(129, 157, 163, 0.33), 0 1px 1px rgba(0, 0, 0, 0.075);*/
+            border: 1px solid #1c2640;
+            box-shadow: inset 0 1px 1px rgba(50, 38, 123, 0.1), 0 0 8px rgba(119, 139, 226, 0.3);
         }
     </style>
 {% endblock %}
@@ -112,13 +117,16 @@
             <div class="col-md-8 " style="padding:0;">
                 <table class="main-top-pie-tab" style="width:100%;">
                     <tr>
-                        <td colspan="3" style="text-align: center;">
-                            <p class="tab-title">统计信息</p>
+                        <td>
+                            <div class="tab-title">统计信息</div>
                         </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>
-                            <div id="pie-one" class="top-pie" ></div>
+                            <div id="pie-one" class="top-pie"></div>
                         </td>
                         <td>
                             <div id="pie-two" class="top-pie"></div>
@@ -150,7 +158,7 @@
             <div class="col-md-4 photograph-box" style="height:225px;!important;padding-left:10px;padding-right:0;">
                 <div class="photograph-content" style="background-color:#0D182E;border:1px solid #10214B;">
                     <div class="content-title">
-                        负载  扫描引擎  爬虫引擎
+                        负载 扫描引擎 爬虫引擎
                     </div>
                     <div id="tu-right-one" class="photograph-platform" style="height:200px;!important; "></div>
                 </div>
@@ -161,7 +169,7 @@
             <div class="col-md-8 " style="padding-left: 0px;padding-right:10px;">
                 <div class="photograph-content">
                     <div class="content-title">
-                      网络资产信息变化
+                        网络资产信息变化
                     </div>
                     <div id="tu-one" class="photograph-platform" style="height:200px;"></div>
                 </div>
