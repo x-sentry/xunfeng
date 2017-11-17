@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block webinfo %}
-    <div class="container">
+    <!--<div class="container">
         <div class="row" style="margin-bottom: 20px">
             <div class="col-sm-12">
                 <div class="btn-group pull-right m-t-15">
@@ -20,15 +20,15 @@
             </div>
         </div>
         <div class="row">
-            {% for i in cursor %}
+{#            {% for i in cursor %}#}
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="portlet">
                         <div class="portlet-heading portlet-default">
                             <div class="label font-13 btn-tag"
-                                 style="float:right;margin:5px 12px 0 0 ">{{ i['count'] }}</div>
-                            {% if i['level'] == '紧急' %}
+{#                                 style="float:right;margin:5px 12px 0 0 ">{{ i['count'] }}</div>#}
+{#                            {% if i['level'] == '紧急' %}#}
                                 <div class="label font-13 tag-danger">紧急</div>
-                            {% elif i['level'] == '高危' %}
+{#                            {% elif i['level'] == '高危' %}#}
                                 <div class="label font-13 tag-high">高危</div>
                             {% elif i['level'] == '中危' %}
                                 <div class="label font-13 tag-middle">中危</div>
