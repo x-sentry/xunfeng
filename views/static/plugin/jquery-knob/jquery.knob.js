@@ -839,15 +839,17 @@ $(function () {
         "y": [1, 2, 3],
         "arr": [1, 2, 3]
     };
-    //这里是饼图
+    //这里是饼图---比例
     var pie_csv = {
         "top": "60",
         "bottom": "40",
         "top_one": "60%",
-
-
-
     };
+     //饼图---分类
+     var sort_pie={
+
+     }
+
 
     //饼图
     pie('pie-one', pie_csv);
@@ -890,9 +892,6 @@ $(function () {
                 orient: 'vertical',
                 x: 'left',
                 top: '20',
-                // x : document.getElementById(id).offsetWidth / 2,
-                // y : 45,
-                // itemGap:12,
                 data: ['成功次数', '失败次数']
             },
             toolbox: {
@@ -925,12 +924,7 @@ $(function () {
 
                                     ]),
 
-
-                                    // color: '#6E3461'
                                 },
-                                // emphasis: {
-                                //     color: 'rgba(0,0,0,0)'
-                                // }
                             }
                         },
 
@@ -940,11 +934,7 @@ $(function () {
                             itemStyle: {
                                 normal: {
                                     color: '#17253F'
-                                    // color: 'rgba(0,0,0,0)'
                                 },
-                                // emphasis: {
-                                //     color: 'rgba(0,0,0,0)'
-                                // }
                             }
                         }
                     ]
@@ -1254,10 +1244,10 @@ $(function () {
     }
 
 
-    //饼图
-    right_pie('tu-two', pie_csv);
+    //饼图----分类
+    right_pie('tu-two', sort_pie);
 
-    function right_pie(id, pie_csv) {
+    function right_pie(id, sort_pie) {
         // 基于准备好的dom，初始化echarts图表
         var myChart = echarts.init(document.getElementById(id));
         var dataStyle = {
@@ -1281,16 +1271,16 @@ $(function () {
                 }
             },
             tooltip: {
-                show: false
+                show: true
             },
             legend: {
                 show: true,
                 color: '#e2e2e2',
                 orient: 'vertical',
-                x: '280',
+                x: '240',
                 top: '20',
                 textStyle: {
-                    color: '#e2e2e2',
+                    color: text_color,
                     fontSize: 14,
                 },
                 data: ['星期一', '星期二', '星期三', '星期四', '星期五']
@@ -1301,7 +1291,8 @@ $(function () {
             calculable: false,//是否拖拽重算
             series: [
                 {
-                    name: '1',
+                    name: ' ',
+                    center: ['35%','50%'],
                     type: 'pie',
                     hoverAnimation: false,
                     animation: false,
@@ -1316,9 +1307,6 @@ $(function () {
                                 normal: {
                                     color: '#0E8DEE'
                                 },
-                                // emphasis: {
-                                //     color: 'rgba(0,0,0,0)'
-                                // }
                             }
                         },
 
@@ -1328,11 +1316,7 @@ $(function () {
                             itemStyle: {
                                 normal: {
                                     color: '#1DB6BE'
-                                    // color: 'rgba(0,0,0,0)'
                                 },
-                                // emphasis: {
-                                //     color: 'rgba(0,0,0,0)'
-                                // }
                             }
                         },
                         {
@@ -1341,11 +1325,7 @@ $(function () {
                             itemStyle: {
                                 normal: {
                                     color: '#78BD3C'
-                                    // color: 'rgba(0,0,0,0)'
                                 },
-                                // emphasis: {
-                                //     color: 'rgba(0,0,0,0)'
-                                // }
                             }
                         },
                         {
@@ -1354,11 +1334,7 @@ $(function () {
                             itemStyle: {
                                 normal: {
                                     color: '#DEB734'
-                                    // color: 'rgba(0,0,0,0)'
                                 },
-                                // emphasis: {
-                                //     color: 'rgba(0,0,0,0)'
-                                // }
                             }
                         },
                         {
@@ -1367,12 +1343,7 @@ $(function () {
                             itemStyle: {
                                 normal: {
                                     color: '#EA6F33'
-
-                                    // color: 'rgba(0,0,0,0)'
                                 },
-                                // emphasis: {
-                                //     color: 'rgba(0,0,0,0)'
-                                // }
                             }
                         },
                         {
@@ -1381,11 +1352,7 @@ $(function () {
                             itemStyle: {
                                 normal: {
                                     color: '#D34245'
-                                    // color: 'rgba(0,0,0,0)'
                                 },
-                                // emphasis: {
-                                //     color: 'rgba(0,0,0,0)'
-                                // }
                             }
                         },
                         {
@@ -1394,11 +1361,7 @@ $(function () {
                             itemStyle: {
                                 normal: {
                                     color: '#224A8F'
-                                    // color: 'rgba(0,0,0,0)'
                                 },
-                                // emphasis: {
-                                //     color: 'rgba(0,0,0,0)'
-                                // }
                             }
                         },
 
@@ -1468,7 +1431,7 @@ $(function () {
                         show: false
                     },
                     axisLabel: {
-                        //rotate:60,       设置文字字体倾斜
+                        rotate:60,
                         textStyle: {
                             color: text_color
                         }
