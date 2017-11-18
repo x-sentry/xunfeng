@@ -6,7 +6,7 @@ from datetime import datetime
 from urllib import unquote, urlopen, urlretrieve, quote, urlencode
 from bson.json_util import dumps
 from bson.objectid import ObjectId
-from flask import request, render_template, redirect, url_for, session, make_response
+from flask import request, render_template, redirect, url_for, session, make_response, jsonify
 from lib.CreateExcel import *
 from lib.Login import logincheck
 from lib.AntiCSRF import anticsrf
@@ -15,7 +15,6 @@ from werkzeug.utils import secure_filename
 from . import app, Mongo, page_size, file_path
 import urllib2
 import copy
-
 
 
 # 搜索页
@@ -306,7 +305,6 @@ def search_result_xls():
         redirect(url_for('NotFound'))
 
 
-
 # 插件列表页
 @app.route('/plugin')
 @logincheck
@@ -345,7 +343,7 @@ def AddPlugin():
                 insert_result = Mongo.coll['Plugin'].insert(mark_json)
                 if insert_result:
                     result = 'success'
-                    file_name = file_name +'.py'
+                    file_name = file_name + '.py'
 
     else:
         name = request.form.get('name', '')
@@ -378,14 +376,14 @@ def AddPlugin():
         except:
             pass
     if isupload == 'true' and result == 'success':
-        code_tuple = open(file_path+file_name).read()
+        code_tuple = open(file_path + file_name).read()
         code = ''
         for _ in code_tuple:
             code += _
         params = {'code': code}
         req = urllib2.Request('https://sec.ly.com/xunfeng/pluginupload')
-        req.add_header('Content-Type','application/x-www-form-urlencoded')
-        rsp = urllib2.urlopen(req,urlencode(params))
+        req.add_header('Content-Type', 'application/x-www-form-urlencoded')
+        rsp = urllib2.urlopen(req, urlencode(params))
         print 'upload result:' + rsp.read()
     return result
 
@@ -408,19 +406,38 @@ def DeletePlugin():
 
 # 统计页面
 @app.route('/analysis')
-@logincheck
-def Analysis():
+# @logincheck
+def analysisPage():
+    return render_template('analysis.html')
+
+
+# 统计json
+@app.route('/analysis/json')
+def analysis_json():
     ip = len(Mongo.coll['Info'].distinct('ip'))
     record = Mongo.coll['Info'].find().count()
     task = Mongo.coll['Task'].find().count()
-    vul = int(Mongo.coll['Plugin'].group([], {}, {'count': 0},'function(doc,prev){prev.count = prev.count + doc.count}')[0]['count'])
+
+    plug = Mongo.coll['Plugin']
+    x = plug.group([], {}, {'count': 0}, 'function(doc,prev){prev.count = prev.count + doc.count}')
+    vul = int(x[0]['count'])
+
     plugin = Mongo.coll['Plugin'].find().count()
-    vultype = Mongo.coll['Plugin'].group(['type'], {"count":{"$ne":0}}, {'count': 0},'function(doc,prev){prev.count = prev.count + doc.count}')
+    vultype = Mongo.coll['Plugin'].group(
+        ['type'],
+        {"count": {"$ne": 0}},
+        {'count': 0},
+        'function(doc,prev){prev.count = prev.count + doc.count}'
+    )
     cur = Mongo.coll['Statistics'].find().sort('date', -1).limit(30)
     trend = []
     for i in cur:
-        trend.append(
-            {'time': i['date'], 'add': i['info']['add'], 'update': i['info']['update'], 'delete': i['info']['delete']})
+        trend.append({
+            'time': i['date'],
+            'add': i['info']['add'],
+            'update': i['info']['update'],
+            'delete': i['info']['delete']
+        })
     vulbeat = Mongo.coll['Heartbeat'].find_one({'name': 'load'})
     scanbeat = Mongo.coll['Heartbeat'].find_one({'name': 'heartbeat'})
     if vulbeat == None or scanbeat == None:
@@ -433,14 +450,32 @@ def Analysis():
         scanalive = (datetime.now() - scanbeat['up_time']).seconds
         taskalive = True if taskalive < 120 else False
         scanalive = True if scanalive < 120 else False
-    server_type = Mongo.coll['Info'].aggregate(
-        [{'$group': {'_id': '$server', 'count': {'$sum': 1}}}, {'$sort': {'count': -1}}])
-    web_type = Mongo.coll['Info'].aggregate([{'$match': {'server': 'web'}}, {'$unwind': '$webinfo.tag'},
-                                             {'$group': {'_id': '$webinfo.tag', 'count': {'$sum': 1}}},
-                                             {'$sort': {'count': -1}}])
-    return render_template('analysis.html', ip=ip, record=record, task=task, vul=vul, plugin=plugin, vultype=vultype,
-                           trend=sorted(trend, key=lambda x: x['time']), taskpercent=taskpercent, taskalive=taskalive,
-                           scanalive=scanalive, server_type=server_type, web_type=web_type)
+    server_type = Mongo.coll['Info'].aggregate([
+        {'$group': {'_id': '$server', 'count': {'$sum': 1}}},
+        {'$sort': {'count': -1}}
+    ])
+    web_type = Mongo.coll['Info'].aggregate([
+        {'$match': {'server': 'web'}},
+        {'$unwind': '$webinfo.tag'},
+        {'$group': {'_id': '$webinfo.tag', 'count': {'$sum': 1}}},
+        {'$sort': {'count': -1}}
+    ])
+
+    result = {
+        'ip': ip,
+        'record': record,
+        'task': task,
+        'vul': vul,
+        'plugin': plugin,
+        'vultype': vultype,
+        'trend': sorted(trend, key=lambda x: x['time']),
+        'taskpercent': taskpercent,
+        'taskalive': taskalive,
+        'scanalive': scanalive,
+        'server_type': server_type,
+        'web_type': web_type,
+    }
+    return jsonify(result)
 
 
 # 配置页面
@@ -509,7 +544,7 @@ def PullUpdate():
     if j:
         try:
             remotelist = json.loads(j)
-            #remotelist_temp = copy.deepcopy(remotelist)
+            # remotelist_temp = copy.deepcopy(remotelist)
             plugin = Mongo.coll['Plugin'].find({'source': 1})
             for p in plugin:
                 for remote in remotelist:
