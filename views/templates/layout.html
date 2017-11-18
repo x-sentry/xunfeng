@@ -40,17 +40,20 @@
             color: #e1e1e1;
             line-height: 50px;
         }
+
         .logo-title:hover {
             color: #e1e1e1;
         }
+
         .nav-item {
             padding: 0 20px;
-            color:#e1e1e1 !important ;
+            color: #e1e1e1 !important;
 
         }
-         .nav-item:hover{
+
+        .nav-item:hover {
             background-color: #172440;
-         }
+        }
     </style>
 
 </head>
@@ -76,27 +79,37 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav" style="margin-left:150px;">
-                    <li class="current-menu nav-item" style="background-color:#172440;color:#e1e1e1!important ; "><a href="#">搜索 <span
-                            class="sr-only">(current)</span></a></li>
-                    <li class="nav-item"><a href="#" style="color:#e1e1e1;">任务</a></li>
-                    <li class="nav-item"><a href="#"style="color:#e1e1e1;">插件</a></li>
-                    <li class="nav-item"><a href="#" style="color:#e1e1e1;">统计</a></li>
+
+                    <li class="dropdown nav-item">
+                        <a href="#" class="dropdown-toggle"
+                           data-toggle="dropdown"
+                           role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false"
+                           style="color:#e1e1e1 !important ;">
+                            搜索
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/filter">条件搜索</a></li>
+                            <li><a href="/">自定义搜素</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item"><a href="task" style="color:#e1e1e1;">任务</a></li>
+                    <li class="nav-item"><a href="/plugin" style="color:#e1e1e1;">插件</a></li>
+                    <li class="nav-item"><a href="/analysis" style="color:#e1e1e1;">统计</a></li>
                     <li class="dropdown nav-item">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false" style="color:#e1e1e1 !important ;">配置 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
+                            <li><a href="/config?config=nascan">爬虫引擎</a></li>
+                            <li><a href="/config?config=vulscan">扫描引擎</a></li>
                         </ul>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" style="color:#d9d9d9;">退出</a></li>
+                    <li><a href="/loginout" style="color:#d9d9d9;">退出</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -110,7 +123,7 @@
     {% block webinfo %}
 
     {% endblock %}
-    <!--<div class="side-bar right-bar">
+    <div class="side-bar right-bar">
         <a href="javascript:void(0);" class="right-bar-toggle">
             <i class="zmdi zmdi-close-circle-o"></i>
         </a>
@@ -119,7 +132,8 @@
             <ul class="list-group list-no-border user-list">
             </ul>
         </div>
-    </div>-->
+    </div>
+
 
 </div>
 <!-- jQuery  -->
