@@ -28,6 +28,13 @@
             margin-bottom: 20px;
             background-color: #0D182E;
         }
+    .form-description{
+        background-color:#0D182E;
+        border:1px solid #1c2640;
+        color:#868686;
+        overflow-x: hidden;
+        cursor: pointer ;
+    }
     </style>
 {% endblock %}
 
@@ -61,15 +68,15 @@
                                                                                         id="icmptag"/></span>
                                         </h4>
                                     {% endif %}
-                                    <textarea class="form-control"   style="background-color:#0D182E;border:rgba(0,0,0,0) "
-                                              name={{ i['type'] }}>{{ i['value'].split('|')[1] }}</textarea>
+                                    <div class=" form-description"   style="background-color:#0D182E;border:rgba(0,0,0,0) "
+                                              name={{ i['type'] }}>{{ i['value'].split('|')[1] }}</div>
                                 {% else %}
                                     <h4 class="form-title" style=" padding-left: 10px; border-left: 3px solid teal;">
                                         {{ i['info'] }}
                                         <i class="zmdi zmdi-help-outline zmdi-hc-1x" title="{{ i['help'] }}"></i>
                                     </h4>
-                                    <div
-                                            style="background-color:#0D182E;border:rgba(0,0,0,0);color:#d9d9d9;overflow:hidden; "
+                                    <div class="form-description"
+                                            style="background-color:#0D182E;border:rgba(0,0,0,0);color:#868686; "
                                             name={{ i['type'] }}>{{ i['value']
                                             }}
                                     </div>
