@@ -1,345 +1,91 @@
+
 {% extends "layout.html" %}
 {% block css %}
     <link href="static/buss/css/plugin.css" rel="stylesheet" type="text/css"/>
     <link href="static/plugin/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
     <link href="static/css/dropify.min.css" rel="stylesheet" type="text/css"/>
 {% endblock %}
-<style>
-    .main-box {
-        border: 1px solid #1c2640;
-        padding-bottom: 15px;
-        background-color: #0D182E;;
-    }
 
-    .plugin-tab {
-        width: 100%;
-    }
-
-    .tab-box {
-        border: 1px solid #144869;
-        border-top: none;
-    }
-
-    .tab-head {
-        height: 50px;
-        line-height: 50px;
-        width: 100%;
-        color: #00C1DE;
-        /*background-color: #ececec;*/
-        /*border-left: 3px solid #009688;*/
-    }
-
-    .main-select {
-        /*background-color:#0B454E;*/
-        padding: 6px 12px;
-        margin-left: 10px;
-        border-radius: 3px;
-        background-color: rgba(0, 0, 0, 0);
-        border: 1px solid rgba(14, 60, 78, 0.8);
-    }
-
-    .main-select-option {
-        background-color: rgb(14, 60, 78);
-    }
-
-    .tab-name {
-        font-size: 18px;
-        font-weight: 500;
-        margin-left: 20px;
-
-    }
-
-    .title-head {
-        font-size: 14px;
-        color: #dedede;
-        margin-top: 20px;
-        margin-left: 18px;
-        padding-left: 5px;
-        border-left: 3px solid teal;
-    }
-
-    .tab-input {
-        background-color: rgba(38, 75, 81, 0.69);
-        background-color: rgba(0, 0, 0, 0);
-        border: 1px solid rgba(14, 60, 78, 0.8);
-    }
-
-    .tab-search {
-        background-color: rgba(14, 60, 78, 0.8);
-        border: 1px solid rgba(14, 60, 78, 0.8);
-        color: #fafafa;
-    }
-
-    .title-description {
-        font-size: 12px;
-        color: #d4d4d4;
-        margin-left: 20px;
-    }
-
-    .tab-body {
-        width: 100%;
-    }
-
-    .tab-body tr td {
-        width: 25%;
-        padding: 5px 0;
-    }
-
-    .title-tail {
-        color: #265d86;
-        font-size: 12px;
-        font-style: italic;
-    }
-
-    .title-tail i {
-        font-style: italic;
-    }
-
-    .tr-tail {
-        border-bottom: 1px dotted #144869;
-    }
-
-    .tab-operate {
-        font-size: 12px;
-        color: #fff;
-    }
-
-    .tab-operate-update {
-        padding: 2px 4px;
-        color: #fff;
-        border: none;
-        background-color: #268aff;
-    }
-
-    .tab-operate-del {
-        background-color: #c1243f;
-        color: #fff;
-        padding: 2px 4px;
-        border: none;
-    }
-</style>
 {% block webinfo %}
     <div class="container">
         <div class="row" style="margin-bottom: 20px">
-            <div class="col-mad-12 col-sm-12">
-                <div class="tab-box">
-                    <table class="tab-head">
-                        <tr style="border-bottom:1px solid#144869">
-                            <td style="width:20%">
-                                <!-- <span class="tab-name">教育机构</span>-->
-                                <select class="main-select">
-                                    <option value="volvo" class="main-select-option">教育机构</option>
-                                    <option value="saab" class="main-select-option">公立学校</option>
-                                    <option value="opel" class="main-select-option">私立学校</option>
-                                    <option value="audi" class="main-select-option">it培训</option>
-                                </select>
-                            </td>
-                            <td></td>
-                            <td style="width:40%">
-                                <div class="input-group" style="width:80%;">
-                                    <input type="text" class="form-control tab-input" placeholder="请输入关键字"
-                                           aria-describedby="basic-addon2">
-                                    <span class="input-group-addon  tab-search" id="basic-addon2">搜索
-                        </span>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                    <!--列表信息-->
-                    <table class="tab-body">
-                        <tr>
-                            <td>
-                                <p class="title-head">
-                                    获取申请人（自然人）信息
-                                </p>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p class="title-description">
-                                    <span><b>地址</b>：银川市审批局</span>
-                                </p>
-                            </td>
-                            <td>
-                                <p class="title-description">
-                                    <b>本地数据量</b>:<span class="main-tab-num" id="mycount">45</span>
-                                </p>
-                            </td>
-                            <td>
-                                <span class="title-description"><b>级别</b>：市级</span>
-                            </td>
-                            <td></td>
-
-
-                        </tr>
-                        <tr>
-                            <td>
-                                <p class="title-description">
-                                    <span><b>联系电话</b>：18629094550</span>
-                                </p>
-                            </td>
-                            <td>
-                                <p class="title-description">
-                                    <span><b>接口数据量</b>:<span class="main-tab-num" id="yourcount">78</span></span>
-                                </p>
-                            </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr class="tr-tail">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <p class="title-tail">
-                                    <i>2017/10/24</i>
-                                    <i>来源：亨顿软件</i>&nbsp;&nbsp;
-                                    <button class="tab-operate-update" onclick="test()">
-                                        保存
-                                    </button>
-                                    <button class="tab-operate-del" id="INTERFACE_APPLYPERSON"
-                                            name="interface_applyperson"
-                                            onclick="deleteinterface1()">
-                                        删除
-                                    </button>
-                                </p>
-                            </td>
-                        </tr>
-                    </table>
-                    <table class="tab-body">
-                        <tr>
-                            <td>
-                                <p class="title-head">
-                                    获取申请人（法人）信息
-                                </p>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p class="title-description">
-                                    <span><b>地址</b>：银川市审批局</span>
-                                </p>
-                            </td>
-                            <td>
-                                <p class="title-description">
-                                    <b>本地数据量</b>:<span class="main-tab-num" id="mycount"></span>
-                                </p>
-                            </td>
-                            <td>
-                                <span class="title-description"><b>级别</b>：市级</span>
-                            </td>
-                            <td></td>
-
-
-                        </tr>
-                        <tr>
-                            <td>
-                                <p class="title-description">
-                                    <span><b>联系电话</b>：18629094550</span>
-                                </p>
-                            </td>
-                            <td>
-                                <p class="title-description">
-                                    <span><b>接口数据量</b>:<span class="main-tab-num" id="yourcount">34</span></span>
-                                </p>
-                            </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr class="tr-tail">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <p class="title-tail">
-                                    <i>2017/10/24</i>
-                                    <i>来源：亨顿软件</i>&nbsp;&nbsp;
-                                    <button class="tab-operate-update" onclick="test()">
-                                        保存
-                                    </button>
-                                    <button class="tab-operate-del" id="INTERFACE_APPLYPERSON"
-                                            name="interface_applyperson"
-                                            onclick="deleteinterface1()">
-                                        删除
-                                    </button>
-                                </p>
-                            </td>
-                        </tr>
-                    </table>
-                    <table class="tab-body">
-                        <tr>
-                            <td>
-                                <p class="title-head">
-                                    获取申请人（自然人）信息
-                                </p>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p class="title-description">
-                                    <span><b>地址</b>：银川市审批局</span>
-                                </p>
-                            </td>
-                            <td>
-                                <p class="title-description">
-                                    <b>本地数据量</b>:<span class="main-tab-num" id="mycount">123</span>
-                                </p>
-                            </td>
-                            <td>
-                                <span class="title-description"><b>级别</b>：市级</span>
-                            </td>
-                            <td></td>
-
-
-                        </tr>
-                        <tr>
-                            <td>
-                                <p class="title-description">
-                                    <span><b>联系电话</b>：18629094550</span>
-                                </p>
-                            </td>
-                            <td>
-                                <p class="title-description">
-                                    <span><b>接口数据量</b>:<span class="main-tab-num" id="yourcount"></span></span>
-                                </p>
-                            </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr class="tr-tail">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <p class="title-tail">
-                                    <i>2017/10/24</i>
-                                    <i>来源：亨顿软件</i>&nbsp;&nbsp;
-                                    <button class="tab-operate-update" onclick="test()">
-                                        保存
-                                    </button>
-                                    <button class="tab-operate-del" id="INTERFACE_APPLYPERSON"
-                                            name="interface_applyperson"
-                                            onclick="deleteinterface1()">
-                                        删除
-                                    </button>
-                                </p>
-                            </td>
-                        </tr>
-                    </table>
+            <div class="col-sm-12">
+                <div style="margin-top: 15px">
+                    <span style="font-weight: bold;color:#e1e1e1;">插件数:
+                        <span style="font-size:14px;color:teal">{{ count }}</span></span>
                 </div>
             </div>
         </div>
+        <div class="row">
+            {% for i in cursor %}
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="portlet" style="background-color:#0D182E;border-radius:0; ">
+                        <div class="portlet-heading portlet-default">
 
+                            <a data-toggle="collapse" data-parent="#accordion1" href="#bg-primary{{ loop.index0 }}">
+                                <h3 class="portlet-title" style="border-left:3px solid teal;padding-left:10px;line-height: 20px;">{{ i['name'] }}
+								</h3>
+                            </a>
+                        </div>
 
+                        <div id="bg-primary{{ loop.index0 }}" class="panel-collapse collapse" style="line-height: 2">
+                            <div class="portlet-body" style="background-color:#0f1d38; ">
+                                <p>
+                                    <i class="zmdi zmdi-hc-lg zmdi-info-outline" style="padding-right: 20px;color:#868686;"></i>
+                                    <span style="color:#868686;">{{ i['info'] }}</span>
+                                </p>
+                                <p>
+                                    <i class="zmdi zmdi-hc-lg zmdi-local-offer" style="padding-right: 20px;color:#868686;"></i>
+                                    <span style="color:#868686;"><a href="/?q={{ i['keyword'] }}" target="_blank">{{ i['keyword'] }}</a></span>
+                                </p>
+                                <p>
+                                    <i class="zmdi zmdi-hc-lg zmdi-collection-text" style="padding-right: 20px;color:#868686;"></i>
+                                    <span style="color:#868686;">{{ i['type'] }}</span>
+                                </p>
+                                <p>
+                                    <i class="zmdi zmdi-hc-lg zmdi-calendar" style="padding-right: 20px;color:#868686;"></i>
+                                    <span style="color:#868686;">{{ i['add_time'].strftime('%Y-%m-%d %H:%M:%S') }}</span>
+                                </p>
+                                <p>
+                                    <i class="zmdi zmdi-hc-lg zmdi-pin-account" style="padding-right: 20px;color:#868686;""></i>
+                                    <span style="color:#868686;">{{ i['author'] }}</span>
+                                </p>
+                                <p>
+                                    <i class="zmdi zmdi-hc-lg zmdi-link" style="padding-right: 20px;"></i>
+                                    <span><a href="{{ i['url'] }}" target="_blank">{{ i['url'] }}</a></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if count>60 %}
+            <div class="row" style="position: absolute;top: 100%;left: 50%;margin: -80px 0 0 -212px;">
+                <ul class="pagination pagination-split">
+                    <li>
+                        <a href="javascript:prePage()"><i class="fa fa-angle-left"></i>前一页</a>
+                    </li>
+                    {% if count % 60 ==0 %}
+                        {% for i in range(1,count//60 + 1) %}
+                            <li>
+                                <a href="javascript:turnTo({{ i }})">{{ i }}</a>
+                            </li>
+                        {% endfor %}
+                    {% else %}
+                        {% for i in range(1,(count//60) + 2) %}
+                            <li>
+                                <a href="javascript:turnTo({{ i }})">{{ i }}</a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                    <li>
+                        <a href="javascript:nextPage()">后一页<i class="fa fa-angle-right"></i></a>
+                    </li>
+                </ul>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
 
