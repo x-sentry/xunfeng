@@ -8,6 +8,12 @@
             color: #e1e1e1;
         }
 
+        html {
+            position: relative;
+            min-height: 100%;
+            background: #172440 !important ;
+        }
+
         .modal-header {
             border-bottom: 1px solid rgba(33, 66, 95, 0.6) !important;
             margin-bottom: 10px;
@@ -47,7 +53,7 @@
                             data-toggle="modal" data-target="#add-new-item" style="margin-right: 5px;color:white">新增目标
                     </button>
                     <button type="button" class="btn btn-tag waves-effect waves-light"
-                            data-toggle="modal" data-target="#con-close-modal" style="color:white">新增任务
+                            data-toggle="modal" data-target="#con-close-modal" style="color:white;text-align: center;">新增任务
                     </button>
                 </div>
                 <div style="margin-top: 15px;color:white">
@@ -144,10 +150,16 @@
         <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true" style="display: none;">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content" style="background-color:#0D182E;">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title">新增任务</h4>
+                        <button type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-hidden="true"
+                                style="color:#f10a0a;font-weight:500;">
+                            ×
+                        </button>
+                        <h4 class="modal-title"  style="text-align:center">新增任务</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -221,7 +233,8 @@
                                 <div class="form-group no-margin">
                                     <label for="field-plugin" class="control-label" style="color:#e1e1e1;">插件选择</label>
                                     <select multiple="multiple" class="multi-select" id="field-plugin"
-                                            name="field-plugin[]" data-plugin="multiselect" style="background-color:#1D323F; ">
+                                            name="field-plugin[]" data-plugin="multiselect"
+                                            style="background-color:#1D323F; ">
                                         {% for i in plugin %}
                                             <option
                                                     style="background-color:#1D323F;"
@@ -229,7 +242,7 @@
                                             </option>
                                         {% endfor %}
                                     </select>
-                                    <div id="select-all" style="background-color:#1D323F;"></div>
+                                    <div id="select-all"></div>
                                 </div>
                             </div>
                         </div>
