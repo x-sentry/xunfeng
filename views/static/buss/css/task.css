@@ -7,15 +7,15 @@
 }
 
 .label-type {
-    background-color: rgba(48, 208, 149, 0.6);
+   color: rgba(48, 208, 149, 0.6) !important ;
 }
 
 .label-server {
-    background-color: rgba(141, 83, 185, 0.6);
+  color: rgba(141, 83, 185, 0.6) !important ;
 }
 
 .label-time {
-    background-color: rgba(57, 208, 232, 0.6);
+   color: rgba(57, 208, 232, 0.6) !important ;
 }
 
 .label-ips {
@@ -23,5 +23,10 @@
 }
 
 .btn-tag {
-    background-color: rgba(34, 133, 204, 0.6) !important;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid #344658 !important;
+}
+
+.btn-tag:hover {
+    background-color: #1d2b48 !important;;
 }
