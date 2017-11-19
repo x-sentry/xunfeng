@@ -71,7 +71,7 @@
                                         </h4>
                                     {% endif %}
                                     <textarea class=" form-description"
-                                              style="background-color:#0D182E;border:rgba(0,0,0,0);width:100%; "
+                                              style="background-color:#0D182E;width:100%; "
                                               name={{ i['type'] }}>{{ i['value'].split('|')[1] }}</textarea>
                                 {% else %}
                                     <h4 class="form-title" style=" padding-left: 10px; border-left: 3px solid teal;">
@@ -79,7 +79,7 @@
                                         <i class="zmdi zmdi-help-outline zmdi-hc-1x" title="{{ i['help'] }}"></i>
                                     </h4>
                                     <textarea class="form-description"
-                                         style="background-color:#0D182E;border:rgba(0,0,0,0);color:#868686;width:100%;"
+                                         style="background-color:#0D182E;color:#868686;width:100%;"
                                          name={{ i['type'] }}>{{ i['value'] }}
                                     </textarea>
                                 {% endif %}
