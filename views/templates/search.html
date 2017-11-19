@@ -52,13 +52,17 @@
         }
 
         .nav-item:hover {
-            background-color: #172440;
+            background-color: #1d2b48;
         }
 
         .search-btn {
             color: #fff;
             background-color: rgba(52, 122, 154, 0.3);
             border-color: rgba(95, 136, 156, 0.5);
+        }
+
+        .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+            background-color: #1d2b48 !important ;
         }
     </style>
 
@@ -92,9 +96,9 @@
                             搜索
                             <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/filter">条件搜索</a></li>
-                            <li><a href="/">自定义搜素</a></li>
+                        <ul class="dropdown-menu" style="background-color:rgba(13,24,46,0.5);border:none;">
+                            <li><a href="/filter" style="color:#e1e1e1;">条件搜索</a></li>
+                            <li><a href="/" style="color:#e1e1e1;">自定义搜素</a></li>
                         </ul>
                     </li>
 
@@ -104,9 +108,10 @@
                     <li class="dropdown nav-item">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false" style="color:#e1e1e1 !important ;">配置 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/config?config=nascan">爬虫引擎</a></li>
-                            <li><a href="/config?config=vulscan">扫描引擎</a></li>
+                        <ul class="dropdown-menu"
+                            style="background-color:rgba(13,24,46,0.5);border:none;color:#e1e1e1;">
+                            <li><a href="/config?config=nascan" style="color:#e1e1e1;">爬虫引擎</a></li>
+                            <li><a href="/config?config=vulscan" style="color:#e1e1e1;">扫描引擎</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -134,7 +139,7 @@
                                                style="background-color: rgba(0,0,0,0);border:1px solid #315477;"
                                                class="form-control"
                                                placeholder="请输入关键字">
-                                          <span class="input-group-btn">
+                                        <span class="input-group-btn">
                                             <button class="btn btn-default search-btn"
                                                     type="submit">搜索
                                             </button>
