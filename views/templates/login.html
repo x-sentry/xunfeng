@@ -23,6 +23,12 @@
     <script src="static/js/modernizr.min.js"></script>
 </head>
 <style>
+    html {
+        position: relative;
+        min-height: 100%;
+        background: #172440 !important;
+    }
+
     body {
         background-image: url("../static/images/bg(world-1).png");
         height: 100%;
@@ -84,9 +90,11 @@
         box-shadow: inset 0 1px 1px rgba(30, 27, 27, 0.1), 0 0 8px rgba(39, 67, 147, 0.3);
         border-radius: 5px;
     }
-    .input-group{
-        width:290px;
+
+    .input-group {
+        width: 290px;
     }
+
     .form-box {
         padding: 20px;
         margin: 0 auto;
@@ -95,11 +103,11 @@
     }
 
     .login-btn {
-         width: 290px;
+        width: 290px;
         background-color: #428ea966;
         color: #e1e1e1;
         border: 1px solid #428ea966;
-        margin-top:15px;
+        margin-top: 15px;
     }
 
     .login-btn:active:focus,
@@ -124,10 +132,12 @@
     .checkbox span {
         float: right;
     }
-    .user-icon{
-        font-size:20px;
-        color:#e1e1e1;
+
+    .user-icon {
+        font-size: 20px;
+        color: #e1e1e1;
     }
+
     input:-ms-input-placeholder {
         color: #575757 !important;
         opacity: 1;
@@ -183,9 +193,9 @@
                                    name="password">
                         </div>
                         <div class="input-group ">
-                            <button  id="login_button"
-                                     type="submit"
-                                     class="btn btn-default login-btn">登录
+                            <button id="login_button"
+                                    type="submit"
+                                    class="btn btn-default login-btn">登录
                             </button>
                         </div>
                         <!--<div class="form-group">
