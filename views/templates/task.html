@@ -2,30 +2,37 @@
 {% block css %}
     <link href="static/buss/css/task.css" rel="stylesheet" type="text/css"/>
     <link href="static/plugin/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
+    <style>
+    .project-box{
+        border-radius: 0;
+        background-color:#0D182E ;
+    }
+    </style>
 {% endblock %}
 
 {% block webinfo %}
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <div class="btn-group pull-right m-t-15">
+                <div class="btn-group pull-right m-t-15"  style="margin-bottom:15px!important; " >
                     <a type="button" class="btn btn-tag dropdown-toggle waves-effect waves-light"
-                       href="/downloadxls" style="color: white">下载
-                    </a>
+                       href="/downloadxls" style="color: white;margin-right:5px">下载
+                    </a>;
                     <a type="button" class="btn btn-danger dropdown-toggle waves-effect waves-light deleteall"
                        style="color: white">删除全部
                     </a>
                 </div>
                 <div style="margin-top: 15px;margin-bottom: 15px">
-                    <span style="font-weight: bold;font-size: 20px;color:white">任务总数:{{ item.count() }}</span>
+                    <span style="font-weight: bold;font-size: 14px;color:#e1e1e1;">
+                        任务总数:  <span style="font-size:14px;color:teal;">{{ item.count() }}</span></span>
                 </div>
             </div>
         </div>
         <div class="row">
             {% for i in item %}
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="card-box project-box" style="min-height: 154px">
-                        <h4 class="m-t-0 m-b-5" style="height: 25px;width:66%;white-space: nowrap">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="card-box project-box" style="min-height: 154px;background-color: #0D182E;border-radius:0">
+                        <h4 class="m-t-0 m-b-5" style="height:20px;border-left:3px solid teal; padding-left:10px;width:66%;white-space: nowrap">
                             <a href="/taskdetail?taskid={{ i['_id'] }}" target="_blank" title="{{ i['title'] }}"
                                style="color:white">{{ i['title'] }}</a>
                             <div style="position: absolute;right: 20px;top: 20px;color:#999999">
