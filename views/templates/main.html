@@ -3,6 +3,33 @@
     <link href="static/buss/css/main.css" rel="stylesheet" type="text/css"/>
     <link href="static/plugin/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
     <link href="static/plugin/multiselect/css/multi-select.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .modal-title {
+            color: #e1e1e1;
+        }
+
+        .modal-header {
+            border-bottom: 1px solid rgba(33, 66, 95, 0.6) !important;
+            margin-bottom: 10px;
+        }
+
+        .form-control {
+            background-color: rgba(30, 57, 72, 0.6) !important;
+            border: 1px solid #2e4a54 !important;
+            border-radius: 0px !important;
+            color: #FFFFFF;
+            padding: 7px 12px;
+            height: 38px;
+            max-width: 100%;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            transition: all 300ms linear;
+        }
+
+        .modal-body hr {
+            border-top: 1px solid rgba(135, 135, 135, 0) !important;
+        }
+    </style>
 {% endblock %}
 
 {% block webinfo %}
@@ -11,9 +38,10 @@
             <div class="col-sm-12">
                 <div class="btn-group pull-right m-t-15">
                     {% if itemcount %}
-                    <a href="{{ url_for('search_result_xls') }}?query={{ query }}" type="button" class="btn btn-tag waves-effect waves-light"
-                     style="margin-right: 5px;color:white">下载搜索结果
-                    </a>
+                        <a href="{{ url_for('search_result_xls') }}?query={{ query }}" type="button"
+                           class="btn btn-tag waves-effect waves-light"
+                           style="margin-right: 5px;color:white">下载搜索结果
+                        </a>
                     {% endif %}
                     <button type="button" class="btn btn-tag waves-effect waves-light"
                             data-toggle="modal" data-target="#add-new-item" style="margin-right: 5px;color:white">新增目标
@@ -27,11 +55,11 @@
                     <input id="checkboxall" type="checkbox">
                     <label for="checkboxall">当前页全选</label>
                 </span>
-                <span style="margin-right: 30px">
+                    <span style="margin-right: 30px">
                     <input id="checkboxrev" type="checkbox">
                     <label for="checkboxrev">当前页反选</label>
                 </span>
-                <span>
+                    <span>
                     <input id="resultcheck" type="checkbox">
                     <label for="resultcheck">结果集全选</label>
                 </span>
@@ -125,7 +153,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="field-name" class="control-label">任务名称</label>
+                                    <label for="field-name" class="control-label" style="color:#e1e1e1;">任务名称</label>
                                     <input type="text" class="form-control required" id="field-name" placeholder="任务名称">
                                 </div>
                             </div>
@@ -133,33 +161,34 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group no-margin">
-                                    <label for="field-plan" class="control-label">任务类型</label>
+                                    <label for="field-plan" class="control-label" style="color:#e1e1e1;">任务类型</label>
                                     <select class="form-control" id="field-plan">
-                                        <option value="0">执行一次</option>
-                                        <option value="1">每天执行</option>
-                                        <option value="7">每周执行</option>
-                                        <option value="30">每月执行</option>
+                                        <option value="0" style="background-color:#1D323F !important;">执行一次</option>
+                                        <option value="1" style="background-color:#1D323F !important;">每天执行</option>
+                                        <option value="7" style="background-color:#1D323F !important;">每周执行</option>
+                                        <option value="30" style="background-color:#1D323F!important;">每月执行</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group no-margin">
-                                    <label for="field-isupdate" class="control-label">是否自动更新列表</label>
+                                    <label for="field-isupdate" class="control-label"
+                                           style="color:#e1e1e1;">是否自动更新列表</label>
                                     <select class="form-control" id="field-isupdate" disabled="disabled">
-                                        <option values="0"></option>
-                                        <option value="1">是</option>
-                                        <option value="0">否</option>
+                                        <option values="0" style="background-color:#1D323F !important;"></option>
+                                        <option value="1" style="background-color:#1D323F !important;">是</option>
+                                        <option value="0" style="background-color:#1D323F !important;">否</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                        <hr>
+                        <hr style="border-bottom: 1px solid rgba(33, 66, 95, 0.6) !important;">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group no-margin">
-                                    <label for="field-type" class="control-label">类型</label>
+                                    <label for="field-type" class="control-label" style="color:#e1e1e1;">类型</label>
                                     <select class="form-control" id="field-type">
-                                        <option></option>
+                                        <option style="background-color:#1D323F !important;"></option>
                                         {% for i in plugin_type %}
                                             <option>{{ i }}</option>
                                         {% endfor %}
@@ -168,20 +197,20 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group no-margin">
-                                    <label for="field-risk" class="control-label">危害等级</label>
+                                    <label for="field-risk" class="control-label" style="color:#e1e1e1;">危害等级</label>
                                     <select class="form-control" id="field-risk">
-                                        <option></option>
-                                        <option>紧急</option>
-                                        <option>高危</option>
-                                        <option>中危</option>
-                                        <option>低危</option>
-                                        <option>风险</option>
+                                        <option style="background-color:#1D323F !important;"></option>
+                                        <option style="background-color:#1D323F !important;">紧急</option>
+                                        <option style="background-color:#1D323F !important;">高危</option>
+                                        <option style="background-color:#1D323F !important;">中危</option>
+                                        <option style="background-color:#1D323F !important;">低危</option>
+                                        <option style="background-color:#1D323F !important;">风险</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group no-margin">
-                                    <label for="field-search" class="control-label">模糊筛选</label>
+                                    <label for="field-search" class="control-label" style="color:#e1e1e1;">模糊筛选</label>
                                     <input type="text" class="form-control" id="field-search" placeholder="插件名称">
                                 </div>
                             </div>
@@ -190,14 +219,17 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group no-margin">
-                                    <label for="field-plugin" class="control-label">插件选择</label>
+                                    <label for="field-plugin" class="control-label" style="color:#e1e1e1;">插件选择</label>
                                     <select multiple="multiple" class="multi-select" id="field-plugin"
-                                            name="field-plugin[]" data-plugin="multiselect">
+                                            name="field-plugin[]" data-plugin="multiselect" style="background-color:#1D323F; ">
                                         {% for i in plugin %}
-                                            <option title="{{ i['info'] }}">{{ i['name'] }}</option>
+                                            <option
+                                                    style="background-color:#1D323F;"
+                                                    title="{{ i['info'] }}">{{ i['name'] }}
+                                            </option>
                                         {% endfor %}
                                     </select>
-									<div id="select-all"></div>
+                                    <div id="select-all" style="background-color:#1D323F;"></div>
                                 </div>
                             </div>
                         </div>
