@@ -846,10 +846,8 @@ $(function () {
         "top_one": "60%",
     };
 
-     //饼图---分类
-     var sort_pie={
-
-     }
+    //饼图---分类
+    var sort_pie = {}
 
 
     //饼图
@@ -857,8 +855,12 @@ $(function () {
     pie('pie-two', pie_csv);
     pie('pie-three', pie_csv);
     pie('pie-four', pie_csv);
-
-
+    //渐变面积图
+    line_line('tu-one', line_csv);
+   //右侧的柱状图
+    right_bar_one('tu-right-one', right_bar);
+    //饼图----分类
+    right_pie('tu-two', sort_pie);
     // 饼图---饼图
     function pie(id, pie_csv) {
         // 基于准备好的dom，初始化echarts图表
@@ -946,12 +948,10 @@ $(function () {
         // 为echarts对象加载数据
         myChart.setOption(option);
     }
-
+    big_bar('tu-three', csv_big_bar);
 
 
     //渐变面积图
-    line_line('tu-one', line_csv);
-
     function line_line(id, line_csv) {
         // 基于准备好的dom，初始化echarts图表
         var myChart = echarts.init(document.getElementById('tu-one'));
@@ -1106,9 +1106,7 @@ $(function () {
         // 为echarts对象加载数据
         myChart.setOption(option);
     }
-
     //右侧的柱状图
-    right_bar_one('tu-right-one', right_bar);
     function right_bar_one(id, right_bar) {
         // 基于准备好的dom，初始化echarts图表
         var myChart = echarts.init(document.getElementById(id));
@@ -1244,10 +1242,6 @@ $(function () {
         myChart.setOption(option);
     }
 
-
-    //饼图----分类
-    right_pie('tu-two', sort_pie);
-
     function right_pie(id, sort_pie) {
         // 基于准备好的dom，初始化echarts图表
         var myChart = echarts.init(document.getElementById(id));
@@ -1263,7 +1257,7 @@ $(function () {
             title: {
                 text: '',
                 x: '10',
-                left:'20',
+                left: '20',
                 y: 'center',
                 itemGap: 20,
                 textStyle: {
@@ -1293,7 +1287,7 @@ $(function () {
             series: [
                 {
                     name: ' ',
-                    center: ['35%','50%'],
+                    center: ['35%', '50%'],
                     type: 'pie',
                     hoverAnimation: false,
                     animation: false,
@@ -1375,9 +1369,6 @@ $(function () {
         myChart.setOption(option);
     }
 
-
-    big_bar('tu-three', csv_big_bar);
-
     function big_bar(id, csv) {
         // 基于准备好的dom，初始化echarts图表
         var myChart = echarts.init(document.getElementById(id));
@@ -1432,7 +1423,7 @@ $(function () {
                         show: false
                     },
                     axisLabel: {
-                        rotate:60,
+                        rotate: 60,
                         textStyle: {
                             color: text_color
                         }
