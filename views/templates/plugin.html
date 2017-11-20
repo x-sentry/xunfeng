@@ -1,9 +1,16 @@
-
 {% extends "layout.html" %}
 {% block css %}
     <link href="static/buss/css/plugin.css" rel="stylesheet" type="text/css"/>
     <link href="static/plugin/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
     <link href="static/css/dropify.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+        html {
+            position: relative;
+            min-height: 100%;
+            background: #172440 !important;
+            height: 100%;
+        }
+    </style>
 {% endblock %}
 
 {% block webinfo %}
@@ -23,31 +30,38 @@
                         <div class="portlet-heading portlet-default">
 
                             <a data-toggle="collapse" data-parent="#accordion1" href="#bg-primary{{ loop.index0 }}">
-                                <h3 class="portlet-title" style="border-left:3px solid teal;padding-left:10px;line-height: 20px;">{{ i['name'] }}
-								</h3>
+                                <h3 class="portlet-title"
+                                    style="border-left:3px solid teal;padding-left:10px;line-height: 20px;">{{ i['name'] }}
+                                </h3>
                             </a>
                         </div>
 
                         <div id="bg-primary{{ loop.index0 }}" class="panel-collapse collapse" style="line-height: 2">
                             <div class="portlet-body" style="background-color:#0f1d38; ">
                                 <p>
-                                    <i class="zmdi zmdi-hc-lg zmdi-info-outline" style="padding-right: 20px;color:#868686;"></i>
+                                    <i class="zmdi zmdi-hc-lg zmdi-info-outline"
+                                       style="padding-right: 20px;color:#868686;"></i>
                                     <span style="color:#868686;">{{ i['info'] }}</span>
                                 </p>
                                 <p>
-                                    <i class="zmdi zmdi-hc-lg zmdi-local-offer" style="padding-right: 20px;color:#868686;"></i>
-                                    <span style="color:#868686;"><a href="/?q={{ i['keyword'] }}" target="_blank">{{ i['keyword'] }}</a></span>
+                                    <i class="zmdi zmdi-hc-lg zmdi-local-offer"
+                                       style="padding-right: 20px;color:#868686;"></i>
+                                    <span style="color:#868686;"><a href="/?q={{ i['keyword'] }}"
+                                                                    target="_blank">{{ i['keyword'] }}</a></span>
                                 </p>
                                 <p>
-                                    <i class="zmdi zmdi-hc-lg zmdi-collection-text" style="padding-right: 20px;color:#868686;"></i>
+                                    <i class="zmdi zmdi-hc-lg zmdi-collection-text"
+                                       style="padding-right: 20px;color:#868686;"></i>
                                     <span style="color:#868686;">{{ i['type'] }}</span>
                                 </p>
                                 <p>
-                                    <i class="zmdi zmdi-hc-lg zmdi-calendar" style="padding-right: 20px;color:#868686;"></i>
+                                    <i class="zmdi zmdi-hc-lg zmdi-calendar"
+                                       style="padding-right: 20px;color:#868686;"></i>
                                     <span style="color:#868686;">{{ i['add_time'].strftime('%Y-%m-%d %H:%M:%S') }}</span>
                                 </p>
                                 <p>
-                                    <i class="zmdi zmdi-hc-lg zmdi-pin-account" style="padding-right: 20px;color:#868686;""></i>
+                                    <i class="zmdi zmdi-hc-lg zmdi-pin-account"
+                                       style="padding-right: 20px;color:#868686;""></i>
                                     <span style="color:#868686;">{{ i['author'] }}</span>
                                 </p>
                                 <p>
