@@ -845,6 +845,7 @@ $(function () {
         "bottom": "40",
         "top_one": "60%",
     };
+
      //饼图---分类
      var sort_pie={
 
