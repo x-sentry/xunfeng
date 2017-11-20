@@ -649,7 +649,7 @@ def Login():
         password = request.form.get('password')
         if account == app.config.get('ACCOUNT') and password == app.config.get('PASSWORD'):
             session['login'] = 'loginsuccess'
-            return redirect(url_for('Search'))
+            return redirect('/analysis')
         else:
             return redirect(url_for('Login'))
 
