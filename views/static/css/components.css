@@ -97,13 +97,13 @@ File: Components
 .btn-default:focus,
 .btn-default:hover,
 .open > .dropdown-toggle.btn-default {
-    background-color: rgba(218, 230, 236, 0.5) !important;
-    border: 1px solid rgba(218, 230, 236, 0.7) !important;
+    background-color: rgba(218, 230, 236, 0.5) ;
+    border: 1px solid rgba(218, 230, 236, 0.7);
 }
 
 .btn-primary {
-    background-color: #188ae2 !important;
-    border: 1px solid #188ae2 !important;
+    background-color: #188ae2 ;
+    border: 1px solid #188ae2 ;
 }
 
 .btn-primary:hover,
@@ -115,13 +115,13 @@ File: Components
 .btn-primary:focus,
 .btn-primary:hover,
 .open > .dropdown-toggle.btn-primary {
-    background-color: #167ccb !important;
-    border: 1px solid #167ccb !important;
+    background-color: #167ccb ;
+    border: 1px solid #167ccb ;
 }
 
 .btn-success {
-    background-color: #10c469 !important;
-    border: 1px solid #10c469 !important;
+    background-color: #10c469;
+    border: 1px solid #10c469;
 }
 
 .btn-success:hover,
@@ -133,13 +133,13 @@ File: Components
 .btn-success:focus,
 .btn-success:hover,
 .open > .dropdown-toggle.btn-success {
-    background-color: #0eac5c !important;
-    border: 1px solid #0eac5c !important;
+    background-color: #0eac5c;
+    border: 1px solid #0eac5c;
 }
 
 .btn-info {
-    background-color: #35b8e0 !important;
-    border: 1px solid #35b8e0 !important;
+    background-color: #35b8e0;
+    border: 1px solid #35b8e0;
 }
 
 .btn-info:hover,
@@ -151,13 +151,13 @@ File: Components
 .btn-info:focus,
 .btn-info:hover,
 .open > .dropdown-toggle.btn-info {
-    background-color: #21afda !important;
-    border: 1px solid #21afda !important;
+    background-color: #21afda;
+    border: 1px solid #21afda;
 }
 
 .btn-warning {
-    background-color: #f9c851 !important;
-    border: 1px solid #f9c851 !important;
+    background-color: #f9c851;
+    border: 1px solid #f9c851;
 }
 
 .btn-warning:hover,
@@ -169,17 +169,17 @@ File: Components
 .btn-warning:focus,
 .btn-warning:hover,
 .open > .dropdown-toggle.btn-warning {
-    background-color: #f8c038 !important;
-    border: 1px solid #f8c038 !important;
+    background-color: #f8c038;
+    border: 1px solid #f8c038;
 }
 
 .btn-danger {
     background-color: rgba(0, 0, 0, 0);
-    border: 1px solid #901111a1 !important;
+    border: 1px solid #a53b40 ;
 }
 
 .btn-danger:hover {
-    background-color: #901111a1 !important;
+    background-color: #a53b40;
 }
 
 .btn-danger:active,
@@ -191,13 +191,13 @@ File: Components
 .btn-danger:focus,
 .btn-danger:hover,
 .open > .dropdown-toggle.btn-danger {
-    background-color: #ff4242 !important;
-    border: 1px solid #ff4242 !important;
+    background-color: #a53b40;
+    border: 1px solid #a53b40;
 }
 
 .btn-inverse {
-    background-color: #3b3e47 !important;
-    border: 1px solid #3b3e47 !important;
+    background-color: #3b3e47 ;
+    border: 1px solid #3b3e47;
 }
 
 .btn-inverse:hover,
@@ -209,32 +209,32 @@ File: Components
 .btn-inverse:focus,
 .btn-inverse:hover,
 .open > .dropdown-toggle.btn-inverse {
-    background-color: #2f3239 !important;
-    border: 1px solid #2f3239 !important;
+    background-color: #2f3239;
+    border: 1px solid #2f3239 ;
 }
 
 .btn-purple {
-    background-color: #5b69bc !important;
-    border: 1px solid #5b69bc !important;
+    background-color: #5b69bc;
+    border: 1px solid #5b69bc;
 }
 
 .btn-purple:hover,
 .btn-purple:focus,
 .btn-purple:active {
-    background-color: #4a59b4 !important;
-    border: 1px solid #4a59b4 !important;
+    background-color: #4a59b4 ;
+    border: 1px solid #4a59b4 ;
 }
 
 .btn-pink {
-    background-color: #ff8acc !important;
-    border: 1px solid #ff8acc !important;
+    background-color: #ff8acc;
+    border: 1px solid #ff8acc;
 }
 
 .btn-pink:hover,
 .btn-pink:focus,
 .btn-pink:active {
-    background-color: #ff70c1 !important;
-    border: 1px solid #ff70c1 !important;
+    background-color: #ff70c1;
+    border: 1px solid #ff70c1 ;
 }
 
 .btn-bordred {
@@ -243,44 +243,44 @@ File: Components
 
 .btn-bordred.btn-default {
     background-color: #dae6ec;
-    border-bottom: 2px solid #c2d6e0 !important;
+    border-bottom: 2px solid #c2d6e0;
 }
 
 .btn-bordred.btn-custom {
     background-color: #71b6f9;
-    border-bottom: 2px solid #4fa4f8 !important;
+    border-bottom: 2px solid #4fa4f8;
 }
 
 .btn-bordred.btn-primary {
-    border-bottom: 2px solid #1576c2 !important;
+    border-bottom: 2px solid #1576c2;
 }
 
 .btn-bordred.btn-success {
-    border-bottom: 2px solid #0da357 !important;
+    border-bottom: 2px solid #0da357 ;
 }
 
 .btn-bordred.btn-info {
-    border-bottom: 2px solid #20a8d1 !important;
+    border-bottom: 2px solid #20a8d1;
 }
 
 .btn-bordred.btn-warning {
-    border-bottom: 2px solid #f7b820 !important;
+    border-bottom: 2px solid #f7b820 ;
 }
 
 .btn-bordred.btn-danger {
-    border-bottom: 2px solid #ff2828 !important;
+    border-bottom: 2px solid #ff2828 ;
 }
 
 .btn-bordred.btn-inverse {
-    border-bottom: 2px solid #0d0d0f !important;
+    border-bottom: 2px solid #0d0d0f ;
 }
 
 .btn-bordred.btn-purple {
-    border-bottom: 2px solid #4755ad !important;
+    border-bottom: 2px solid #4755ad ;
 }
 
 .btn-bordred.btn-pink {
-    border-bottom: 2px solid #ff66bc !important;
+    border-bottom: 2px solid #ff66bc ;
 }
 
 .btn-rounded {
@@ -289,62 +289,62 @@ File: Components
 }
 
 .btn-trans.btn-default {
-    border: 1px solid rgba(218, 230, 236, 0.1) !important;
-    background-color: rgba(218, 230, 236, 0.3) !important;
+    border: 1px solid rgba(218, 230, 236, 0.1) ;
+    background-color: rgba(218, 230, 236, 0.3) ;
     color: #435966 !important;
 }
 
 .btn-trans.btn-custom {
-    border: 1px solid rgba(113, 182, 249, 0.1) !important;
-    background-color: rgba(113, 182, 249, 0.15) !important;
+    border: 1px solid rgba(113, 182, 249, 0.1) ;
+    background-color: rgba(113, 182, 249, 0.15) ;
     color: #71b6f9 !important;
 }
 
 .btn-trans.btn-primary {
-    border: 1px solid rgba(24, 138, 226, 0.1) !important;
-    background-color: rgba(24, 138, 226, 0.15) !important;
+    border: 1px solid rgba(24, 138, 226, 0.1) ;
+    background-color: rgba(24, 138, 226, 0.15) ;
     color: #188ae2 !important;
 }
 
 .btn-trans.btn-success {
-    border: 1px solid rgba(16, 196, 105, 0.1) !important;
-    background-color: rgba(16, 196, 105, 0.15) !important;
+    border: 1px solid rgba(16, 196, 105, 0.1) ;
+    background-color: rgba(16, 196, 105, 0.15) ;
     color: #10c469 !important;
 }
 
 .btn-trans.btn-info {
-    border: 1px solid rgba(53, 184, 224, 0.1) !important;
-    background-color: rgba(53, 184, 224, 0.15) !important;
+    border: 1px solid rgba(53, 184, 224, 0.1) ;
+    background-color: rgba(53, 184, 224, 0.15) ;
     color: #35b8e0 !important;
 }
 
 .btn-trans.btn-warning {
-    border: 1px solid rgba(249, 200, 81, 0.1) !important;
-    background-color: rgba(249, 200, 81, 0.15) !important;
+    border: 1px solid rgba(249, 200, 81, 0.1) ;
+    background-color: rgba(249, 200, 81, 0.15) ;
     color: #f9c851 !important;
 }
 
 .btn-trans.btn-danger {
-    border: 1px solid rgba(255, 91, 91, 0.1) !important;
-    background-color: rgba(255, 91, 91, 0.15) !important;
+    border: 1px solid rgba(255, 91, 91, 0.1) ;
+    background-color: rgba(255, 91, 91, 0.15) ;
     color: #ff5b5b !important;
 }
 
 .btn-trans.btn-inverse {
-    border: 1px solid rgba(59, 62, 71, 0.1) !important;
-    background-color: rgba(59, 62, 71, 0.15) !important;
-    color: #3b3e47 !important;
+    border: 1px solid rgba(59, 62, 71, 0.1) ;
+    background-color: rgba(59, 62, 71, 0.15) ;
+    color: #3b3e47 ;
 }
 
 .btn-trans.btn-purple {
-    border: 1px solid rgba(91, 105, 188, 0.1) !important;
-    background-color: rgba(91, 105, 188, 0.15) !important;
+    border: 1px solid rgba(91, 105, 188, 0.1) ;
+    background-color: rgba(91, 105, 188, 0.15) ;
     color: #5b69bc !important;
 }
 
 .btn-trans.btn-pink {
-    border: 1px solid rgba(255, 138, 204, 0.1) !important;
-    background-color: rgba(255, 138, 204, 0.15) !important;
+    border: 1px solid rgba(255, 138, 204, 0.1) ;
+    background-color: rgba(255, 138, 204, 0.15) ;
     color: #ff8acc !important;
 }
 
