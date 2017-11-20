@@ -11,7 +11,7 @@
         html {
             position: relative;
             min-height: 100%;
-            background: #172440 !important ;
+            background: #172440 !important;
         }
 
         .modal-header {
@@ -35,6 +35,24 @@
         .modal-body hr {
             border-top: 1px solid rgba(135, 135, 135, 0) !important;
         }
+
+        .btn-close {
+            background-color: rgba(0, 0, 0, 0) !important;
+            border: 1px solid #a53b40 !important;
+        }
+
+        .btn-close:hover {
+            background-color: #a53b40 !important;
+        }
+
+        .btn-save {
+            background-color: rgba(0, 0, 0, 0) !important;
+            border: 1px solid #344658 !important;
+        }
+
+        .btn-save:hover {
+            background-color: #344658 !important;
+        }
     </style>
 {% endblock %}
 
@@ -53,7 +71,8 @@
                             data-toggle="modal" data-target="#add-new-item" style="margin-right: 5px;color:white">新增目标
                     </button>
                     <button type="button" class="btn btn-tag waves-effect waves-light"
-                            data-toggle="modal" data-target="#con-close-modal" style="color:white;text-align: center;">新增任务
+                            data-toggle="modal" data-target="#con-close-modal" style="color:white;text-align: center;">
+                        新增任务
                     </button>
                 </div>
                 <div style="margin-top: 15px;color:white">
@@ -159,7 +178,7 @@
                                 style="color:#f10a0a;font-weight:500;">
                             ×
                         </button>
-                        <h4 class="modal-title"  style="text-align:center">新增任务</h4>
+                        <h4 class="modal-title" style="text-align:center">新增任务</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -196,7 +215,7 @@
                         </div>
                         <hr style="border-bottom: 1px solid rgba(33, 66, 95, 0.6) !important;">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group no-margin">
                                     <label for="field-type" class="control-label" style="color:#e1e1e1;">类型</label>
                                     <select class="form-control" id="field-type">
@@ -207,7 +226,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group no-margin">
                                     <label for="field-risk" class="control-label" style="color:#e1e1e1;">危害等级</label>
                                     <select class="form-control" id="field-risk">
@@ -220,14 +239,16 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group no-margin">
-                                    <label for="field-search" class="control-label" style="color:#e1e1e1;">模糊筛选</label>
-                                    <input type="text" class="form-control" id="field-search" placeholder="插件名称">
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                    <div class="form-group no-margin">
+                                        <label for="field-search" class="control-label"
+                                               style="color:#e1e1e1;">模糊筛选</label>
+                                        <input type="text" class="form-control" id="field-search" placeholder="插件名称">
+                                    </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group no-margin">
@@ -247,13 +268,24 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer" style="border-top:1px solid rgba(33, 66, 95, 0.6) ">
                         {% if plugin %}
-                            <span style="float: left;">插件总数：{{ plugin.count() }}</span>
+                            <span style="float: left;color:#e1e1e1;">插件总数：<span
+                                    style="font-size:14px;font-weight:500;color:teal;">{{ plugin.count() }}</span></span>
                         {% endif %}
-                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" id="close">关闭
+                        <button type="button"
+                                class="btn btn-default waves-effect btn-close"
+                                data-dismiss="modal"
+                                id="close"
+                                style="color:#e1e1e1;width:86px;"
+                        >关闭
                         </button>
-                        <button type="button" class="btn btn-info waves-effect waves-light" id="savetask">保存任务</button>
+                        <button type="button"
+                                class="btn btn-info waves-effect waves-light btn-save"
+                                id="savetask"
+                                style="">
+                            保存任务
+                        </button>
                     </div>
                 </div>
             </div>
@@ -278,7 +310,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"
+                        <button type="button" class="btn btn-default waves-effect " data-dismiss="modal"
                                 id="closenewitem">关闭
                         </button>
                         <button type="button" class="btn btn-primary waves-effect waves-light" id="addnewitems">新增
