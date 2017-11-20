@@ -3,10 +3,17 @@
     <link href="static/buss/css/task.css" rel="stylesheet" type="text/css"/>
     <link href="static/plugin/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
     <style>
-    .project-box{
-        border-radius: 0;
-        background-color:#0D182E ;
-    }
+        .project-box {
+            border-radius: 0;
+            background-color: #0D182E;
+        }
+
+        html {
+            position: relative;
+            min-height: 100%;
+            background: #172440 !important;
+            height: 100%;
+        }
     </style>
 {% endblock %}
 
@@ -14,7 +21,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <div class="btn-group pull-right m-t-15"  style="margin-bottom:15px!important; " >
+                <div class="btn-group pull-right m-t-15" style="margin-bottom:15px!important; ">
                     <a type="button" class="btn btn-tag dropdown-toggle waves-effect waves-light"
                        href="/downloadxls" style="color: white;margin-right:5px;width:74px;">下载
                     </a>
@@ -31,8 +38,10 @@
         <div class="row">
             {% for i in item %}
                 <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="card-box project-box" style="min-height: 154px;background-color: #0D182E;border-radius:0">
-                        <h4 class="m-t-0 m-b-5" style="height:20px;border-left:3px solid teal; padding-left:10px;width:66%;white-space: nowrap">
+                    <div class="card-box project-box"
+                         style="min-height: 154px;background-color: #0D182E;border-radius:0">
+                        <h4 class="m-t-0 m-b-5"
+                            style="height:20px;border-left:3px solid teal; padding-left:10px;width:66%;white-space: nowrap">
                             <a href="/taskdetail?taskid={{ i['_id'] }}" target="_blank" title="{{ i['title'] }}"
                                style="color:white">{{ i['title'] }}</a>
                             <div style="position: absolute;right: 20px;top: 20px;color:#999999">
