@@ -87,6 +87,17 @@
         .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
             background-color: #1d2b48 !important;
         }
+
+        .user-exit {
+            color: #a09e9e;
+            font-size: 12px;
+        }
+
+        .user-exit:hover {
+            font-size: 12px;
+            color: #4c82d6 !important ;
+            text-decoration: underline !important;  ;
+        }
     </style>
 
 </head>
@@ -108,7 +119,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav" style="margin-left:150px;">
-
+                    <li class="nav-item"><a href="/analysis" style="color:#e1e1e1;">首页</a></li>
                     <li class="dropdown nav-item">
                         <a href="#" class="dropdown-toggle"
                            data-toggle="dropdown"
@@ -127,7 +138,7 @@
 
                     <li class="nav-item"><a href="task" style="color:#e1e1e1;">任务</a></li>
                     <li class="nav-item"><a href="/plugin" style="color:#e1e1e1;">插件</a></li>
-                    <li class="nav-item"><a href="/analysis" style="color:#e1e1e1;">统计</a></li>
+
                     <li class="dropdown nav-item">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false" style="color:#e1e1e1 !important ;">配置 <span class="caret"></span></a>
@@ -139,7 +150,7 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/loginout" style="color:#a09e9e;">退出</a></li>
+                    <li><a href="/loginout" class="user-exit" style="color:#a09e9e;">退出</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
