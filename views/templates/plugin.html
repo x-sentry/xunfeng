@@ -1,114 +1,115 @@
 {% extends "layout.html" %}
 {% block css %}
-<link href="static/buss/css/plugin.css" rel="stylesheet" type="text/css"/>
-<link href="static/plugin/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
-<link href="static/css/dropify.min.css" rel="stylesheet" type="text/css"/>
-<style>
-    html {
-        position: relative;
-        min-height: 100%;
-        background: #172440 !important;
-        height: 100%;
-    }
-</style>
+    <link href="static/buss/css/plugin.css" rel="stylesheet" type="text/css"/>
+    <link href="static/plugin/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
+    <link href="static/font_plug/iconfont.css" rel="stylesheet" type="text/css"/>
+    <link href="static/css/dropify.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+        html {
+            position: relative;
+            min-height: 100%;
+            background: #172440 !important;
+            height: 100%;
+        }
+    </style>
 {% endblock %}
 
 {% block webinfo %}
-<div class="container">
-    <div class="row" style="margin-bottom: 20px">
-        <div class="col-sm-12">
-            <div style="margin-top: 15px">
+    <div class="container">
+        <div class="row" style="margin-bottom: 20px">
+            <div class="col-sm-12">
+                <div style="margin-top: 15px">
                     <span style="font-weight: bold;color:#e1e1e1;">插件数:
                         <span style="font-size:14px;color:teal">{{ count }}</span></span>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        {% for i in cursor %}
-        <div class="col-sm-12 col-md-6 col-lg-6">
-            <div class="portlet" style="background-color:#0D182E;border-radius:0; ">
-                <div class="portlet-heading portlet-default">
+        <div class="row">
+            {% for i in cursor %}
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="portlet" style="background-color:#0D182E;border-radius:0; ">
+                        <div class="portlet-heading portlet-default">
 
-                    <a data-toggle="collapse" data-parent="#accordion1" href="#bg-primary{{ loop.index0 }}">
-                        <h3 class="portlet-title"
-                            style="border-left:3px solid teal;padding-left:10px;line-height: 20px;">{{ i['name'] }}
-                        </h3>
-                    </a>
-                </div>
+                            <a data-toggle="collapse" data-parent="#accordion1" href="#bg-primary{{ loop.index0 }}">
+                                <h3 class="portlet-title"
+                                    style="border-left:3px solid teal;padding-left:10px;line-height: 20px;">{{ i['name'] }}
+                                </h3>
+                            </a>
+                        </div>
 
-                <div id="bg-primary{{ loop.index0 }}" class="panel-collapse collapse" style="line-height: 2">
-                    <div class="portlet-body" style="background-color:#0f1d38; ">
-                        <p>
-                            <i class="zmdi zmdi-hc-lg zmdi-info-outline"
-                               style="padding-right: 20px;color:#868686;"></i>
-                            <span style="color:#868686;">{{ i['info'] }}</span>
-                        </p>
-                        <p>
-                            <i class="zmdi zmdi-hc-lg zmdi-local-offer"
-                               style="padding-right: 20px;color:#868686;"></i>
-                            <span style="color:#868686;"><a href="/?q={{ i['keyword'] }}"
-                                                            target="_blank">{{ i['keyword'] }}</a></span>
-                        </p>
-                        <p>
-                            <i class="zmdi zmdi-hc-lg zmdi-collection-text"
-                               style="padding-right: 20px;color:#868686;"></i>
-                            <span style="color:#868686;">{{ i['type'] }}</span>
-                        </p>
-                        <p>
-                            <i class="zmdi zmdi-hc-lg zmdi-calendar"
-                               style="padding-right: 20px;color:#868686;"></i>
-                            <span style="color:#868686;">{{ i['add_time'].strftime('%Y-%m-%d %H:%M:%S') }}</span>
-                        </p>
-                        <p>
-                            <i class="zmdi zmdi-hc-lg zmdi-pin-account"
-                               style="padding-right: 20px;color:#868686;""></i>
-                            <span style="color:#868686;">{{ i['author'] }}</span>
-                        </p>
-                        <p>
-                            <i class="zmdi zmdi-hc-lg zmdi-link" style="padding-right: 20px;"></i>
-                            <span><a href="{{ i['url'] }}" target="_blank">{{ i['url'] }}</a></span>
-                        </p>
+                        <div id="bg-primary{{ loop.index0 }}" class="panel-collapse collapse" style="line-height: 2">
+                            <div class="portlet-body" style="background-color:#0f1d38; ">
+                                <p>
+                                    <i class="zmdi zmdi-hc-lg zmdi-info-outline"
+                                       style="padding-right: 20px;color:#868686;"></i>
+                                    <span style="color:#868686;">{{ i['info'] }}</span>
+                                </p>
+                                <p>
+                                    <i class="zmdi zmdi-hc-lg zmdi-local-offer"
+                                       style="padding-right: 20px;color:#868686;"></i>
+                                    <span style="color:#868686;"><a href="/?q={{ i['keyword'] }}"
+                                                                    target="_blank">{{ i['keyword'] }}</a></span>
+                                </p>
+                                <p>
+                                    <i class="zmdi zmdi-hc-lg zmdi-collection-text"
+                                       style="padding-right: 20px;color:#868686;"></i>
+                                    <span style="color:#868686;">{{ i['type'] }}</span>
+                                </p>
+                                <p>
+                                    <i class="zmdi zmdi-hc-lg zmdi-calendar"
+                                       style="padding-right: 20px;color:#868686;"></i>
+                                    <span style="color:#868686;">{{ i['add_time'].strftime('%Y-%m-%d %H:%M:%S') }}</span>
+                                </p>
+                                <p>
+                                    <i class="zmdi zmdi-hc-lg zmdi-pin-account"
+                                       style="padding-right: 20px;color:#868686;""></i>
+                                    <span style="color:#868686;">{{ i['author'] }}</span>
+                                </p>
+                                <p>
+                                    <i class="zmdi zmdi-hc-lg zmdi-link" style="padding-right: 20px;"></i>
+                                    <span><a href="{{ i['url'] }}" target="_blank">{{ i['url'] }}</a></span>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
 
-    {% if count>60 %}
-    <div class="row" style="position: absolute;top: 100%;left: 50%;margin: -80px 0 0 -212px;">
-        <ul class="pagination pagination-split">
-            <li>
-                <a href="javascript:prePage()"><i class="fa fa-angle-left"></i>前一页</a>
-            </li>
-            {% if count % 60 ==0 %}
-            {% for i in range(1,count//60 + 1) %}
-            <li>
-                <a href="javascript:turnTo({{ i }})">{{ i }}</a>
-            </li>
-            {% endfor %}
-            {% else %}
-            {% for i in range(1,(count//60) + 2) %}
-            <li>
-                <a href="javascript:turnTo({{ i }})">{{ i }}</a>
-            </li>
-            {% endfor %}
-            {% endif %}
-            <li>
-                <a href="javascript:nextPage()">后一页<i class="fa fa-angle-right"></i></a>
-            </li>
-        </ul>
+        {% if count>60 %}
+            <div class="row" style="position: absolute;top: 100%;left: 50%;margin: -80px 0 0 -212px;">
+                <ul class="pagination pagination-split">
+                    <li>
+                        <a href="javascript:prePage()"><i class="fa fa-angle-left"></i>前一页</a>
+                    </li>
+                    {% if count % 60 ==0 %}
+                        {% for i in range(1,count//60 + 1) %}
+                            <li>
+                                <a href="javascript:turnTo({{ i }})">{{ i }}</a>
+                            </li>
+                        {% endfor %}
+                    {% else %}
+                        {% for i in range(1,(count//60) + 2) %}
+                            <li>
+                                <a href="javascript:turnTo({{ i }})">{{ i }}</a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                    <li>
+                        <a href="javascript:nextPage()">后一页<i class="fa fa-angle-right"></i></a>
+                    </li>
+                </ul>
+            </div>
+        {% endif %}
     </div>
-    {% endif %}
-</div>
 {% endblock %}
 
 {% block js %}
-<script src="static/plugin/sweetalert/sweetalert.min.js"></script>
-<script src="static/js/dropify.min.js"></script>
-<script src="static/js/ajaxfileupload.js"></script>
-<script src="static/buss/js/plugin.js"></script>
-<script>
-    $("#plug-hook").css("background-color", "teal");
-</script>
+    <script src="static/plugin/sweetalert/sweetalert.min.js"></script>
+    <script src="static/js/dropify.min.js"></script>
+    <script src="static/js/ajaxfileupload.js"></script>
+    <script src="static/buss/js/plugin.js"></script>
+    <script>
+        $("#plug-hook").css("background-color", "teal");
+    </script>
 {% endblock %}
