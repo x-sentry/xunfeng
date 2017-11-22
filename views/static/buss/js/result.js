@@ -125,7 +125,7 @@ $('#field-plan').change(function () {
 $('#addnewitems').click(function () {
     ips = $('#field-newitems').val().split(',');
     for (i in ips) {
-        $('#content').append("<div class='col-lg-4'>\
+        $('#content').append("<div class='col-lg-6'>\
                                 <div class='card-box project-box'>\
                                     <a href='javascript:;' style='position: absolute;right:10px'>\
                                         <input type='checkbox' class='itemcheck' infoid='" + ips[i] + "'>\
