@@ -56,7 +56,25 @@
 
         .project-box {
             background-color: #0D182E !important;
-            border-radius: 3px;
+            border-radius: 0 !important;
+        }
+
+        .search-add-goal-btn {
+            border: 1px solid #344658 !important;
+            background-color: rgba(0, 0, 0, 0) !important ;
+        }
+
+        .search-add-goal-btn:hover {
+            background-color: #344658 !important ;
+        }
+
+        .search-add-task-btn {
+            border: 1px solid #175758 !important;
+            background-color: rgba(0, 0, 0, 0) !important ;
+        }
+
+        .search-add-goal-btn:hover {
+            background-color: #175758 !important ;
         }
     </style>
 {% endblock %}
@@ -72,10 +90,10 @@
                            style="margin-right: 5px;color:white">下载搜索结果
                         </a>
                     {% endif %}
-                    <button type="button" class="btn btn-tag waves-effect waves-light"
-                            data-toggle="modal" data-target="#add-new-item" style="margin-right: 5px;color:white">新增目标
+                    <button type="button" class="btn btn-tag waves-effect waves-light  search-add-goal-btn"
+                            data-toggle="modal" data-target="#add-new-item" style="margin-right: 10px;color:white">新增目标
                     </button>
-                    <button type="button" class="btn btn-tag waves-effect waves-light"
+                    <button type="button" class="btn btn-tag waves-effect waves-light search-add-task-btn"
                             data-toggle="modal" data-target="#con-close-modal" style="color:white;text-align: center;">
                         新增任务
                     </button>

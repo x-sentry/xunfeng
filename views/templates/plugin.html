@@ -33,6 +33,7 @@
                             <a data-toggle="collapse" data-parent="#accordion1" href="#bg-primary{{ loop.index0 }}">
                                 <h3 class="portlet-title"
                                     style="border-left:3px solid teal;padding-left:10px;line-height: 20px;">{{ i['name'] }}
+                                    <span class="iconfont" style="float:right;padding-right:20px;color:teal;">&#xe6f8</span>
                                 </h3>
                             </a>
                         </div>
@@ -44,29 +45,29 @@
                                        style="padding-right: 20px;color:#868686;"></i>
                                     <span style="color:#868686;">{{ i['info'] }}</span>
                                 </p>
-                                <p>
-                                    <i class="zmdi zmdi-hc-lg zmdi-local-offer"
-                                       style="padding-right: 20px;color:#868686;"></i>
-                                    <span style="color:#868686;"><a href="/?q={{ i['keyword'] }}"
+                                <p style="color:#337ab7!important ;">
+                                    <i class="iconfont"
+                                       style="padding-right: 20px;color:#337ab7!important ;">&#xe66b;</i>
+                                    <span style="color:#337ab7;"><a href="/?q={{ i['keyword'] }}"
                                                                     target="_blank">{{ i['keyword'] }}</a></span>
                                 </p>
                                 <p>
-                                    <i class="zmdi zmdi-hc-lg zmdi-collection-text"
-                                       style="padding-right: 20px;color:#868686;"></i>
+                                    <i class="iconfont"
+                                       style="padding-right: 20px;color:#868686;">&#xe655</i>
                                     <span style="color:#868686;">{{ i['type'] }}</span>
                                 </p>
                                 <p>
-                                    <i class="zmdi zmdi-hc-lg zmdi-calendar"
-                                       style="padding-right: 20px;color:#868686;"></i>
+                                    <i class="iconfont"
+                                       style="padding-right: 20px;color:#868686;">&#xe616;</i>
                                     <span style="color:#868686;">{{ i['add_time'].strftime('%Y-%m-%d %H:%M:%S') }}</span>
                                 </p>
                                 <p>
-                                    <i class="zmdi zmdi-hc-lg zmdi-pin-account"
-                                       style="padding-right: 20px;color:#868686;""></i>
+                                    <i class="iconfont"
+                                       style="padding-right: 20px;color:#868686;">&#xe605;</i>
                                     <span style="color:#868686;">{{ i['author'] }}</span>
                                 </p>
-                                <p>
-                                    <i class="zmdi zmdi-hc-lg zmdi-link" style="padding-right: 20px;"></i>
+                                <p style="color:#337ab7!important;">
+                                    <i class="iconfont" style="padding-right:20px;color:#337ab7!important; ">&#xe62f;</i>
                                     <span><a href="{{ i['url'] }}" target="_blank">{{ i['url'] }}</a></span>
                                 </p>
                             </div>
