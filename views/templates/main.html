@@ -61,20 +61,20 @@
 
         .search-add-goal-btn {
             border: 1px solid #344658 !important;
-            background-color: rgba(0, 0, 0, 0) !important ;
+            background-color: rgba(0, 0, 0, 0) !important;
         }
 
         .search-add-goal-btn:hover {
-            background-color: #344658 !important ;
+            background-color: #344658 !important;
         }
 
         .search-add-task-btn {
             border: 1px solid #175758 !important;
-            background-color: rgba(0, 0, 0, 0) !important ;
+            background-color: rgba(0, 0, 0, 0) !important;
         }
 
         .search-add-goal-btn:hover {
-            background-color: #175758 !important ;
+            background-color: #175758 !important;
         }
     </style>
 {% endblock %}
@@ -319,27 +319,42 @@
         <div id="add-new-item" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel"
              aria-hidden="true" style="display: none;">
             <div class="modal-dialog" style="width:55%;">
-                <div class="modal-content">
+                <div class="modal-content" style="background-color:#0D182E;">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="custom-width-modalLabel">新增目标</h4>
+                        <button type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-hidden="true"
+                                style="color:#f10a0a;font-weight:500;">×
+                        </button>
+                        <h4 class="modal-title" id="custom-width-modalLabel" style="text-align:center">新增目标
+                        </h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="field-newitems" class="control-label">新增目标</label>
+                                    <label for="field-newitems"
+                                           class="control-label"
+                                           style="color:#e1e1e1;">新增目标
+                                    </label>
                                     <textarea class="form-control" id="field-newitems" placeholder="ip:端口，以逗号分割"
                                               rows="10"></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default waves-effect " data-dismiss="modal"
-                                id="closenewitem">关闭
+                    <div class="modal-footer" style="border-top:1px solid rgba(33, 66, 95, 0.6)">
+                        <button type="button"
+                                class="btn btn-default waves-effect  btn-close"
+                                data-dismiss="modal"
+                                style="color:#e1e1e1;"
+                                id="closenewitem">
+                            关闭
                         </button>
-                        <button type="button" class="btn btn-primary waves-effect waves-light" id="addnewitems">新增
+                        <button type="button"
+                                class="btn btn-primary waves-effect waves-light btn-save"
+                                id="addnewitems">新增
                         </button>
                     </div>
                 </div>
