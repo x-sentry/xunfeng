@@ -295,10 +295,11 @@ function right_bar_one(id, data) {
             show: false
         },
         grid      : {
+            left         : 80,
             top          : 30,
             bottom       : 45,
             showAllSymbol: 10,
-            right        : '11%',
+            right        : 40,
             borderColor  : border_color
         },
         tooltip   : {
@@ -308,7 +309,7 @@ function right_bar_one(id, data) {
                 type: 'none'
             },
             backgroundColor: 'rgba(0,193,222,0.5)',
-            formatter      : '{a}:{c}',
+            formatter      : '{a}:{c}%',
             textStyle      : {
                 fontSize: 12
             }
@@ -330,7 +331,7 @@ function right_bar_one(id, data) {
             {
                 // type: 'category',
                 type         : 'value',
-                name         : '(日)',
+                name         : '',
                 splitNumber  : 5,
                 nameTextStyle: {color: text_color},
                 axisLine     : {
@@ -352,17 +353,17 @@ function right_bar_one(id, data) {
                         color: border_color
                     }
                 },
-                data         : data.x
+                data         : data.y
             }
         ],
         yAxis     : [
             {
                 type         : 'category',
                 // type: 'value',
-                name         : '(数量)',
+                name         : '',
                 splitNumber  : 5,
                 // boundaryGap:[0,1],
-                data         : data.y,
+                data         : data.x,
                 nameTextStyle: {color: text_color},
                 axisLine     : {
                     lineStyle: {
@@ -387,32 +388,25 @@ function right_bar_one(id, data) {
         ],
         series    : [
             {
-                name          : '高级',
+                name          : '负载',
                 type          : 'bar',
                 itemStyle     : {normal: {color: "#318395"}},
                 barWidth      : 18,
                 barCategoryGap: 5,
 
                 data: [
-
                     {
                         value    : data.y[0],
-                        itemStyle: {
-                            normal: {color: '#EA6F33'}
-                        }
-                    },
-                    {
-                        value    : data.y[1],
                         itemStyle: {
                             normal: {color: '#318395'}
                         }
                     },
                     {
-                        value    : data.y[2],
+                        value    : data.y[1],
                         itemStyle: {
                             normal: {color: '#266560'}
                         }
-                    },
+                    }
                 ]
             }
         ]
@@ -456,14 +450,14 @@ function right_pie(id, sort_pie) {
             top      : '20',
             textStyle: {
                 color   : text_color,
-                fontSize: 14,
+                fontSize: 14
             },
-            data     : ['星期一', '星期二', '星期三', '星期四', '星期五']
+            data     : sort_pie.names
         },
         toolbox   : {
-            show: false,
+            show: false
         },
-        calculable: false,//是否拖拽重算
+        calculable: false,
         series    : [
             {
                 name          : ' ',
@@ -474,78 +468,22 @@ function right_pie(id, sort_pie) {
                 clockWise     : false,
                 radius        : [(pie_int - 15), pie_int],
                 itemStyle     : dataStyle,
-                data          : [
-                    {
-                        value    : pie_csv.top,
-                        name     : '星期一',
-                        itemStyle: {
-                            normal: {
-                                color: '#0E8DEE'
-                            },
-                        }
-                    },
-
-                    {
-                        value    : pie_csv.bottom,
-                        name     : '星期二',
-                        itemStyle: {
-                            normal: {
-                                color: '#1DB6BE'
-                            },
-                        }
-                    },
-                    {
-                        value    : pie_csv.bottom,
-                        name     : '星期三',
-                        itemStyle: {
-                            normal: {
-                                color: '#78BD3C'
-                            },
-                        }
-                    },
-                    {
-                        value    : pie_csv.bottom,
-                        name     : '星期四',
-                        itemStyle: {
-                            normal: {
-                                color: '#DEB734'
-                            },
-                        }
-                    },
-                    {
-                        value    : pie_csv.bottom,
-                        name     : '星期五',
-                        itemStyle: {
-                            normal: {
-                                color: '#EA6F33'
-                            },
-                        }
-                    },
-                    {
-                        value    : pie_csv.bottom,
-                        name     : '星期六',
-                        itemStyle: {
-                            normal: {
-                                color: '#D34245'
-                            },
-                        }
-                    },
-                    {
-                        value    : pie_csv.bottom,
-                        name     : '星期日',
-                        itemStyle: {
-                            normal: {
-                                color: '#224A8F'
-                            },
-                        }
-                    },
-
-                ]
+                data          : []
             },
 
         ]
     };
-    // 为echarts对象加载数据
+    for (var i = 0; i < sort_pie.rawDate.length; i++) {
+        option.series.data.push({
+            value    : sort_pie.rawDate[i]['count'],
+            name     : sort_pie.rawDate[i]['type'],
+            itemStyle: {
+                normal: {
+                    // color: '#0E8DEE'
+                }
+            }
+        });
+    }
     myChart.setOption(option);
 }
 
@@ -558,9 +496,9 @@ function big_bar(id, csv) {
         },
         grid      : {
             top          : 40,
-            bottom       : 40,
+            bottom       : 60,
             left         : 55,
-            right        : 40,
+            right        : 80,
             showAllSymbol: 20,
             borderColor  : border_color
         },
@@ -582,16 +520,15 @@ function big_bar(id, csv) {
             textStyle: {
                 color: text_color
             },
-            data     : ['服务类型', 'web服务类型']
         },
         toolbox   : {
-            show: false
+            show: true
         },
-        calculable: false,
+        calculable: true,
         xAxis     : [
             {
                 type         : 'category',
-                name         : '(日)',
+                name         : '时间/day',
                 splitNumber  : 5,
                 nameTextStyle: {color: text_color},
                 axisLine     : {
@@ -648,20 +585,12 @@ function big_bar(id, csv) {
         ],
         series    : [
             {
-                name          : '服务类型',
+                name          : '数量',
                 type          : 'bar',
                 itemStyle     : {normal: {color: "#318395"}},
                 barWidth      : 20,
                 barCategoryGap: 25,
-                data          : csv.serverType
-            },
-            {
-                name          : 'web服务类型',
-                type          : 'bar',
-                itemStyle     : {normal: {color: "#66953a"}},
-                barWidth      : 20,
-                barCategoryGap: 25,
-                data          : csv.webType
+                data          : csv.y
             }
         ]
     };
@@ -744,41 +673,72 @@ $(function () {
 
         // 右侧第一个柱图
         var csv_right_bar = {
-            "x"  : [30, 50, 90],
-            "y"  : [0, 50, 100],
-            "arr": [
-                ['星期一', '星期二', '星期三'],
-                [2, 5, 9],
-            ]
+            "y": [30, 50],
+            "x": ['扫描引擎', '爬虫引擎'],
         };
         //右侧的柱状图
         right_bar_one('tu-right-one', csv_right_bar);
 
-        var csv_big_bar        = {
-            "x"         : ["9.01", "9.02", "9.03", "9.04", "9.05", "9.06", "9.07"],
-            "webType"   : [30, 50, 70, 90, 110, 130, 150],
-            "serverType": [30, 50, 70, 90, 110, 130, 150]
+
+        var server_type = [
+            {y: 'ssh', a: 20,},
+            {y: 'telnet', a: 2,},
+            {y: 'rdp', a: 2,},
+            {y: 'mysql', a: 1,},
+            {y: 'dns', a: 1,},
+            {y: 'pptp', a: 1,},
+            {y: 'rsync', a: 1,},
+            {y: 'mssql', a: 1,},
+            {y: 'pop3', a: 1,},
+            {y: 'smtps', a: 1,},
+        ];
+        var web_type    = [
+            {y: 'apache', a: 8,},
+            {y: 'iis', a: 8,},
+            {y: 'nginx', a: 4,},
+            {y: 'aspx', a: 3,},
+            {y: 'php', a: 1,},
+        ];
+
+        server_type = data.server_type.result || [];
+        web_type    = data.web_type.result || [];
+
+        var csv_big_bar = {
+            server_type: {
+                x: server_type.map(function (type) {
+                    return type._id;
+                }),
+                y: server_type.map(function (type) {
+                    return type.count;
+                })
+            },
+            web_type   : {
+                x: web_type.map(function (type) {
+                    return type._id;
+                }),
+                y: web_type.map(function (type) {
+                    return type.count;
+                })
+            }
         };
-        csv_big_bar.x          = data.webType;
-        csv_big_bar.webType    = data.web_type.result;
-        csv_big_bar.serverType = data.server_type.result;
 
-        // 饼图---饼图
-        big_bar('tu-three', csv_big_bar);
+        // ????
+        big_bar('tu-serve', csv_big_bar.server_type);
+        big_bar('tu-web', csv_big_bar.web_type);
 
 
-        //柱状图
-        var right_bar = {
-            "x"  : ["1", "2", "3"],
-            "y"  : [1, 2, 3],
-            "arr": [1, 2, 3]
+        // 饼图-- - 分类
+        var sort_pie = {
+            rawDate: data.vultype,
+            names  : data.vultype.map(function (o) {
+                return o.type
+            }),
+            values : data.vultype.map(function (o) {
+                return o.count;
+            })
         };
-
-
-        //饼图---分类
-        // var sort_pie = {};
-        // //饼图----分类
-        // right_pie('tu-two', sort_pie);
+        //饼图----分类
+        right_pie('tu-two', sort_pie);
 
 
     });

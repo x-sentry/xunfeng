@@ -498,22 +498,23 @@ def analysis_json():
 
 # 配置页面
 @app.route('/config')
-@logincheck
+# @logincheck
 def Config():
     val = []
-    table = request.args.get('config', '')
-    if table in ("vulscan", "nascan"):
-        dict = Mongo.coll['Config'].find_one({'type': table})
-        if dict and 'config' in dict:
-            dict = dict['config']
-            for _ in dict:
-                if _.find('_') > 0:
-                    item_type = "list"
-                else:
-                    item_type = "word"
-                val.append({"show": item_type, "type": _, "info": dict[_]["info"], "help": dict[_]["help"],
-                            "value": dict[_]["value"]})
-    val = sorted(val, key=lambda x: x["show"], reverse=True)
+    container = []
+    config = Mongo.coll['Config'].find({})
+    for _config in config:
+        container.append(_config)
+    _con = dict(container[0]['config'], **container[1]['config'])
+    for k, v in _con.items():
+        val.append({
+            "show": '',
+            "type": k,
+            "info": v["info"],
+            "help": v["help"],
+            "value": v["value"]
+        })
+    val = filter(lambda x: x['type'] in ['Masscan', 'Cycle', 'Scan_list', 'Port_list'], val)
     return render_template('config.html', values=val)
 
 
