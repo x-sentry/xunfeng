@@ -32,6 +32,19 @@
             transition: all 300ms linear;
         }
 
+        .search-ctrl {
+            background-color: rgba(30, 57, 72, 0.6) !important;
+            border: 1px solid #2e4a54 !important;
+            border-radius: 0px !important;
+            color: #FFFFFF;
+            padding: 7px 12px;
+            height: 34px;
+            max-width: 100%;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            transition: all 300ms linear;
+        }
+
         .modal-body hr {
             border-top: 1px solid rgba(135, 135, 135, 0) !important;
         }
@@ -83,88 +96,137 @@
     <div class="container">
         <div class="row" style="margin-bottom: 20px">
             <div class="col-sm-12">
-                <div class="btn-group pull-right m-t-15">
+                <div class="btn-group pull-right m-t-15"
+                     style="margin-top: 0px !important;position:relative;top: -8px;">
+                    <form method="get" action="/" role="form"
+                          style="margin-right: 10px;color:white;background: rgba(0,128,128,0);float: left;">
+                        <i class="zmdi zmdi-help-outline zmdi-hc-2x"
+                           style="position: relative;font-size: 14px;position: relative;top: 8px;font-weight: 100"
+                           id="tips"></i>
+                        <input type="text" class="search-ctrl"
+                               id="filter"
+                               name="q"
+                               placeholder="搜索比如 ip:"
+                               style="margin-right: 10px;color:white;background: rgba(0,128,128,0);float: left;">
+                        </input>
+                    </form>
+
                     {% if itemcount %}
                         <a href="{{ url_for('search_result_xls') }}?query={{ query }}" type="button"
                            class="btn btn-tag waves-effect waves-light"
-                           style="margin-right: 5px;color:white">下载搜索结果
+                           style="margin-right: 5px;color:white">
+                            下载搜索结果
                         </a>
                     {% endif %}
                     <button type="button" class="btn btn-tag waves-effect waves-light  search-add-goal-btn"
-                            data-toggle="modal" data-target="#add-new-item" style="margin-right: 10px;color:white">新增目标
+                            data-toggle="modal" data-target="#add-new-item" style="margin-right: 10px;color:white">
+                        新增目标
                     </button>
                     <button type="button" class="btn btn-tag waves-effect waves-light search-add-task-btn"
                             data-toggle="modal" data-target="#con-close-modal" style="color:white;text-align: center;">
                         新增任务
                     </button>
                 </div>
-                <div style="margin-top: 15px;color:white">
-                <span style="margin-right: 30px">
-                    <input id="checkboxall" type="checkbox">
-                    <label for="checkboxall">当前页全选</label>
-                </span>
-                    <span style="margin-right: 30px">
-                    <input id="checkboxrev" type="checkbox">
-                    <label for="checkboxrev">当前页反选</label>
-                </span>
+                <div style="margin-top: 0px;color:white">
+                    <span style="margin-right: 15px">
+                        <input id="checkboxall" type="checkbox">
+                        <label for="checkboxall"
+                               style="font-size: 12px;font-weight: 100;position:relative;top: -3px;">
+                            当前页全选
+                        </label>
+                    </span>
+                    <span style="margin-right: 15px">
+                        <input id="checkboxrev" type="checkbox">
+                        <label for="checkboxrev"
+                               style="font-size: 12px;font-weight: 100;position:relative;top: -3px;">
+                            当前页反选
+                        </label>
+                    </span>
                     <span>
-                    <input id="resultcheck" type="checkbox">
-                    <label for="resultcheck">结果集全选</label>
-                </span>
-                    <span style="margin-left: 40px;font-weight: bold;">结果集总数:{{ itemcount }}</span>
+                        <input id="resultcheck" type="checkbox">
+                        <label for="resultcheck"
+                               style="font-size: 12px;font-weight: 100;position:relative;top: -3px;">
+                            结果集全选
+                        </label>
+                    </span>
+                    <span style="margin-left: 40px;font-weight: bold;font-size: 12px;font-weight: 100;position:relative;top: -3px;">
+                        结果集总数:{{ itemcount }}
+                    </span>
                 </div>
             </div>
         </div>
+
         <div class="row" id="content">
             {% for i in item %}
-                <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="card-box project-box">
-                        <a data-toggle="collapse" data-parent="#accordion{{ loop.index0 }}"
-                           href="#bg-primary{{ loop.index0 }}"
-                           style="position: absolute;right:33px">
-                            <i class="zmdi zmdi-plus tag"></i>
-                        </a>
-                        <a href="javascript:;" style="position: absolute;right:10px"><input
-                                id="checkbox{{ loop.index0 }}" type="checkbox" class="itemcheck"
-                                infoid="{{ i['ip'] }}:{{ i['port'] }}"></a>
-                        <div class="tag-right">
-                            <h4 class="m-t-0 m-b-5" style="height: 25px">
-                                {% if i['server']=='web' %}
-                                    {% if i['port']==443 %}
-                                        <a href="https://{{ i['ip'] }}:{{ i['port'] }}" class="text-name"
-                                           target="_blank">{{ i['ip'] }}:{{ i['port'] }}</a>
+
+                        <div class="row">
+                            <div>
+                                <a data-toggle="collapse" data-parent="#accordion{{ loop.index0 }}"
+                                   href="#bg-primary{{ loop.index0 }}"
+                                   style="position: absolute;right:33px">
+                                    <i class="fa fa-eye tag"></i>
+                                </a>
+
+                                <a href="javascript:void(0)" style="position: absolute;right:10px">
+                                    <input id="checkbox{{ loop.index0 }}" type="checkbox" class="itemcheck"
+                                           infoid="{{ i['ip'] }}:{{ i['port'] }}">
+                                </a>
+                            </div>
+                            <div>
+                                <h4 class="m-t-0 m-b-5" style="height: 25px">
+                                    <i class="fa fa-desktop" style="position:relative;top: 1px;"></i>
+                                    {% if i['server']=='web' %}
+                                        {% if i['port']==443 %}
+                                            <a href="https://{{ i['ip'] }}:{{ i['port'] }}" class="text-name"
+                                               target="_blank">{{ i['ip'] }}:{{ i['port'] }}</a>
+                                        {% else %}
+                                            <a href="http://{{ i['ip'] }}:{{ i['port'] }}" class="text-name"
+                                               target="_blank">{{ i['ip'] }}:{{ i['port'] }}</a>
+                                        {% endif %}
                                     {% else %}
-                                        <a href="http://{{ i['ip'] }}:{{ i['port'] }}" class="text-name"
-                                           target="_blank">{{ i['ip'] }}:{{ i['port'] }}</a>
+                                        {{ i['ip'] }}:{{ i['port'] }}
                                     {% endif %}
-                                {% else %}
-                                    {{ i['ip'] }}:{{ i['port'] }}
-                                {% endif %}
-                                <div class="label label-purple">{{ i['server'] }}</div>
-                                {% if 'tag' in i['webinfo'] and i['webinfo']['tag'] %}
-                                    {% for t in i['webinfo']['tag'] %}
-                                        <div class="label label-success" title="tag">{{ t }}</div>
-                                    {% endfor %}
-                                {% endif %}
-                                {% if 'title' in i['webinfo'] and i['webinfo']['title'] %}
-                                    <div class="label label-info"
-                                         title="{{ i['webinfo']['title'] }}">{{ i['webinfo']['title'] }}
-                                    </div>
-                                {% endif %}
-                            </h4>
+                                    <div class="label label-purple" style="padding: 2px 6px">{{ i['server'] }}</div>
+                                    {% if 'tag' in i['webinfo'] and i['webinfo']['tag'] %}
+                                        {% for t in i['webinfo']['tag'] %}
+                                            <div class="label label-success" title="tag"
+                                                 style="font-size: 12px;padding: 2px 6px">{{ t }}</div>
+                                        {% endfor %}
+                                    {% endif %}
+                                    {% if 'title' in i['webinfo'] and i['webinfo']['title'] %}
+                                        <div class="label label-info"
+                                             style="padding: 2px 6px"
+                                             title="{{ i['webinfo']['title'] }}">{{ i['webinfo']['title'] }}
+                                        </div>
+                                    {% endif %}
+                                </h4>
+                            </div>
                         </div>
+
+
                         <p class="text-time text-uppercase m-b-0 font-13">{{ i['time'].strftime('%Y-%m-%d %H:%M:%S') }}</p>
                         <div class="clearfix"></div>
                         <div id="bg-primary{{ loop.index0 }}" class="panel-collapse collapse">
                             {% if i['hostname'] %}
-                                <p class="text-purple m-b-10 font-13"><b>HostName: </b>{{ i['hostname'] }}</p>
+                                <p class="text-purple m-b-10 font-13">
+                                    <b>HostName: </b>
+                                    <br>
+                                    {{ i['hostname'] }}
+                                </p>
                             {% endif %}
-                            <p class="text-muted font-13"><b>Banner: </b>{{ i['banner'] }}</p>
+                            <p class="text-muted font-13">
+                                <b>Banner: </b>
+                                <br>
+                                {{ i['banner'] }}
+                            </p>
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
+
         {% if itemcount>60 %}
             <div class="row" style="position: absolute;top: 100%;left: 50%;margin: -80px 0 0 -212px;">
                 <ul class="pagination pagination-split">
@@ -190,6 +252,7 @@
                 </ul>
             </div>
         {% endif %}
+
         <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true" style="display: none;">
             <div class="modal-dialog">
@@ -213,8 +276,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
+                        <div class="row" style="height: 0px;display: none">
+                            <div class="col-md-6" style="height: 0px">
                                 <div class="form-group no-margin">
                                     <label for="field-plan" class="control-label" style="color:#e1e1e1;">任务类型</label>
                                     <select class="form-control" id="field-plan">
@@ -225,7 +288,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="height: 0px">
                                 <div class="form-group no-margin">
                                     <label for="field-isupdate" class="control-label"
                                            style="color:#e1e1e1;">是否自动更新列表</label>
@@ -303,8 +366,8 @@
                                 class="btn btn-default waves-effect btn-close"
                                 data-dismiss="modal"
                                 id="close"
-                                style="color:#e1e1e1;width:86px;"
-                        >关闭
+                                style="color:#e1e1e1;width:86px;">
+                            关闭
                         </button>
                         <button type="button"
                                 class="btn btn-info waves-effect waves-light btn-save"
@@ -327,7 +390,8 @@
                                 aria-hidden="true"
                                 style="color:#f10a0a;font-weight:500;">×
                         </button>
-                        <h4 class="modal-title" id="custom-width-modalLabel" style="text-align:center">新增目标
+                        <h4 class="modal-title" id="custom-width-modalLabel" style="text-align:center">
+                            新增目标
                         </h4>
                     </div>
                     <div class="modal-body">
@@ -367,7 +431,36 @@
     <script src="static/plugin/sweetalert/sweetalert.min.js"></script>
     <script src="static/plugin/multiselect/js/jquery.multi-select.js"></script>
     <script src="static/buss/js/result.js"></script>
+    <script src="static/plugin/jquery.poshytip.min.js"></script>
+    <style>
+        .xxxxx {
+            color: #dee5db;
+        }
+    </style>
     <script>
+
+        $('#tips').poshytip({
+            className    : 'tip-twitter',
+            showTimeout  : 1,
+            alignTo      : 'target',
+            alignX       : 'center',
+            alignY       : 'bottom',
+            offsetX      : -100,
+            offsetY      : 30,
+            allowTipHover: false,
+            fade         : false,
+            slide        : false,
+            content      : "<div style='background:#dee5db;border-radius:4px;padding:12px 20px;box-shadow:0px 0px 20px black'><p style='font-weight:600'>查询方法：</p> \
+                        <p>1.按端口： port:端口号 eg. port:22</p>\
+                        <p>2.按banner： banner:banner内容关键词 eg. banner:ftp</p>\
+                        <p>3.按ip(支持c段，b段模糊查询)： ip:ip地址  eg. ip:192.168.1.1／ip:192.168.1.</p>\
+                        <p>4.按服务名： server:服务名  eg. server:iis</p>\
+                        <p>5.按标题： title:标题内容关键词 eg. title:xxx管理系统</p>\
+                        <p>6.按服务类型标签： tag:服务类型 eg. tag:apache</p>\
+                        <p>7.按主机名： hostname:主机名 eg. hostname:server001</p>\
+                        <p>8.全局模糊： all:查询内容  eg. all:tongcheng</p>\
+                        <p>9.多条件： 条件1:内容1;条件2:内容2  eg. ip:192.168.1.1;port:22</p></div>",
+        });
         $("#search-hook").css("background-color", "teal");
     </script>
 {% endblock %}

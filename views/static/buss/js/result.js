@@ -1,6 +1,6 @@
 function getQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-    var r = window.location.search.substr(1).match(reg);
+    var r   = window.location.search.substr(1).match(reg);
     if (r != null) return unescape(r[2]);
     return null;
 }
@@ -25,13 +25,13 @@ $('#checkboxrev').click(function () {
 });
 
 $('#field-type').change(function () {
-    type = $('#field-type').val();
-    risk = $('#field-risk').val();
+    type   = $('#field-type').val();
+    risk   = $('#field-risk').val();
     search = $('#field-search').val();
     $('#field-plugin').children().remove();
     $.post('/getplugin', {
-        type: type,
-        risk: risk,
+        type  : type,
+        risk  : risk,
         search: search
     }, function (e) {
         $.each(e, function (i, n) {
@@ -42,13 +42,13 @@ $('#field-type').change(function () {
 });
 
 $('#field-risk').change(function () {
-    type = $('#field-type').val();
-    risk = $('#field-risk').val();
+    type   = $('#field-type').val();
+    risk   = $('#field-risk').val();
     search = $('#field-search').val();
     $('#field-plugin').children().remove();
     $.post('/getplugin', {
-        type: type,
-        risk: risk,
+        type  : type,
+        risk  : risk,
         search: search
     }, function (e) {
         $.each(e, function (i, n) {
@@ -60,13 +60,13 @@ $('#field-risk').change(function () {
 
 $('#field-search').bind('keyup', function (event) {
     if (event.keyCode == "13") {
-        type = $('#field-type').val();
-        risk = $('#field-risk').val();
+        type   = $('#field-type').val();
+        risk   = $('#field-risk').val();
         search = $('#field-search').val();
         $('#field-plugin').children().remove();
         $.post('/getplugin', {
-            type: type,
-            risk: risk,
+            type  : type,
+            risk  : risk,
             search: search
         }, function (e) {
             $.each(e, function (i, n) {
@@ -82,12 +82,12 @@ $('#savetask').click(function () {
     if (!title) {
         swal("任务名不可为空！", "", "error");
     }
-    condition = getQueryString('q');
-    plugin = $('#field-plugin').val().join(",");
-    plan = $('#field-plan').val();
-    isupdate = $('#field-isupdate').val() == "" ? "0" : $('#field-isupdate').val();
+    condition   = getQueryString('q');
+    plugin      = $('#field-plugin').val().join(",");
+    plan        = $('#field-plan').val();
+    isupdate    = $('#field-isupdate').val() == "" ? "0" : $('#field-isupdate').val();
     resultcheck = $('#resultcheck').prop('checked')
-    var ids = [];
+    var ids     = [];
     if (!resultcheck) {
         $.each($('.itemcheck:checked'), function (i, n) {
             ids.push($(n).attr('infoid'))
@@ -95,12 +95,12 @@ $('#savetask').click(function () {
         ids = ids.join(',');
     }
     $.post('/addtask', {
-        title: title,
-        condition: condition,
-        plugin: plugin,
-        ids: ids,
-        plan: plan,
-        isupdate: isupdate,
+        title      : title,
+        condition  : condition,
+        plugin     : plugin,
+        ids        : ids,
+        plan       : plan,
+        isupdate   : isupdate,
         resultcheck: resultcheck
     }, function (e) {
         if (e == 'success') {
@@ -142,10 +142,10 @@ $('#addnewitems').click(function () {
 });
 
 $('.tag').click(function () {
-    if ($(this).hasClass('zmdi-plus')) {
-        $(this).removeClass('zmdi-plus').addClass('zmdi-minus')
-    } else {
-        $(this).removeClass('zmdi-minus').addClass('zmdi-plus')
+    if ($(this).hasClass('fa-eye')) {
+        $(this).removeClass('fa-eye').addClass('fa-eye-slash')
+    } else if ($(this).hasClass('fa-eye-slash')) {
+        $(this).removeClass('fa-eye-slash').addClass('fa-eye')
     }
 });
 
@@ -159,10 +159,10 @@ $(document).ready(function () {
     }
 });
 
-$('#select-all').click(function(){
-    if($('#field-plugin').val()==null){
+$('#select-all').click(function () {
+    if ($('#field-plugin').val() == null) {
         $('#field-plugin').multiSelect('select_all');
-    }else{
+    } else {
         $('#field-plugin').multiSelect('deselect_all');
     }
 });

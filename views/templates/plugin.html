@@ -18,58 +18,105 @@
     <div class="container">
         <div class="row" style="margin-bottom: 20px">
             <div class="col-sm-12">
-                <div style="margin-top: 15px">
-                    <span style="font-weight: bold;color:#e1e1e1;">插件数:
+                <div style="margin-top: 0px">
+                    <span style="font-weight: bold;color:#e1e1e1;">插件总数:
                         <span style="font-size:14px;color:teal">{{ count }}</span></span>
                 </div>
             </div>
         </div>
         <div class="row">
             {% for i in cursor %}
-                <div class="col-sm-12 col-md-6 col-lg-6">
-                    <div class="portlet" style="background-color:#0D182E;border-radius:0; ">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="portlet" style="background-color:#0D182E;border-radius:0; margin-bottom: 5px">
                         <div class="portlet-heading portlet-default">
+
+
+                            <div class="label font-13 btn-tag"
+                                 style="float:right;margin:0;margin-left: 3px;font-size: 12px !important; ">
+                                {{ i['count'] }}
+                            </div>
+
+                            {% if i['level'] == '紧急' %}
+                                <div class="label font-13 tag-danger" style="margin: 0px;font-size: 12px !important;">
+                                    紧急
+                                </div>
+                            {% elif i['level'] == '高危' %}
+                                <div class="label font-13 tag-high" style="margin: 0px;font-size: 12px !important;">高危
+                                </div>
+                            {% elif i['level'] == '中危' %}
+                                <div class="label font-13 tag-middle" style="margin: 0px;font-size: 12px !important;">
+                                    中危
+                                </div>
+                            {% elif i['level'] == '低危' %}
+                                <div class="label font-13 tag-low" style="margin: 0px;font-size: 12px !important;">低危
+                                </div>
+                            {% elif i['level'] == '风险' %}
+                                <div class="label font-13 tag-tip" style="margin: 0px;font-size: 12px !important;">风险
+                                </div>
+                            {% endif %}
 
                             <a data-toggle="collapse" data-parent="#accordion1" href="#bg-primary{{ loop.index0 }}">
                                 <h3 class="portlet-title"
-                                    style="border-left:3px solid teal;padding-left:10px;line-height: 20px;">{{ i['name'] }}
-                                    <span class="iconfont" style="float:right;padding-right:20px;color:teal;">&#xe6f8</span>
+                                    style="border-left:3px solid teal;padding-left:10px;line-height: 20px;font-size: 14px">
+                                    {{ i['name'] }}
+                                    <span class="iconfont" title="查看插件详情"
+                                          style="float:right;padding-right:20px;color:teal;">
+                                        &#xe6f8
+                                    </span>
                                 </h3>
                             </a>
+
+
                         </div>
 
                         <div id="bg-primary{{ loop.index0 }}" class="panel-collapse collapse" style="line-height: 2">
                             <div class="portlet-body" style="background-color:#0f1d38; ">
-                                <p>
+
+                                <p style="color:#337ab7!important ;margin-bottom: 0px">
+                                    <i class="iconfont"
+                                       style="padding-right: 20px;color:#337ab7!important ;">&#xe66b;</i>
+                                    <span style="color:#337ab7;">
+                                        <a href="/?q={{ i['keyword'] }}"
+                                           title="点击打开页面查看"
+                                           target="_blank">
+                                        {{ i['keyword'] }}
+                                        </a>
+                                    </span>
+                                </p>
+
+                                <p style="color:#337ab7!important;margin-bottom: 0px">
+                                    <i class="iconfont" style="padding-right:20px;color:#337ab7!important; ">
+                                        &#xe62f;
+                                    </i>
+                                    <span>
+                                        <a href="{{ i['url'] }}"
+                                           title="点击打开页面查看"
+                                           target="_blank">
+                                            {{ i['url'] }}
+                                        </a>
+                                    </span>
+                                </p>
+                                <p style="margin-bottom: 0px">
                                     <i class="zmdi zmdi-hc-lg zmdi-info-outline"
                                        style="padding-right: 20px;color:#868686;"></i>
                                     <span style="color:#868686;">{{ i['info'] }}</span>
                                 </p>
-                                <p style="color:#337ab7!important ;">
-                                    <i class="iconfont"
-                                       style="padding-right: 20px;color:#337ab7!important ;">&#xe66b;</i>
-                                    <span style="color:#337ab7;"><a href="/?q={{ i['keyword'] }}"
-                                                                    target="_blank">{{ i['keyword'] }}</a></span>
-                                </p>
-                                <p>
+                                <p style="margin-bottom: 0px">
                                     <i class="iconfont"
                                        style="padding-right: 20px;color:#868686;">&#xe655</i>
                                     <span style="color:#868686;">{{ i['type'] }}</span>
                                 </p>
-                                <p>
+                                <p style="margin-bottom: 0px">
                                     <i class="iconfont"
                                        style="padding-right: 20px;color:#868686;">&#xe616;</i>
                                     <span style="color:#868686;">{{ i['add_time'].strftime('%Y-%m-%d %H:%M:%S') }}</span>
                                 </p>
-                                <p>
+                                <p style="margin-bottom: 0px">
                                     <i class="iconfont"
                                        style="padding-right: 20px;color:#868686;">&#xe605;</i>
                                     <span style="color:#868686;">{{ i['author'] }}</span>
                                 </p>
-                                <p style="color:#337ab7!important;">
-                                    <i class="iconfont" style="padding-right:20px;color:#337ab7!important; ">&#xe62f;</i>
-                                    <span><a href="{{ i['url'] }}" target="_blank">{{ i['url'] }}</a></span>
-                                </p>
+
                             </div>
                         </div>
                     </div>
@@ -78,10 +125,13 @@
         </div>
 
         {% if count>60 %}
-            <div class="row" style="position: absolute;top: 100%;left: 50%;margin: -80px 0 0 -212px;">
+            <div class="row" style="float:right;">
                 <ul class="pagination pagination-split">
                     <li>
-                        <a href="javascript:prePage()"><i class="fa fa-angle-left"></i>前一页</a>
+                        <a href="javascript:prePage()">
+                            <i class="fa fa-angle-left"></i>
+                            前一页
+                        </a>
                     </li>
                     {% if count % 60 ==0 %}
                         {% for i in range(1,count//60 + 1) %}

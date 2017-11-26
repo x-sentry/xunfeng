@@ -514,7 +514,7 @@ def Config():
             "help": v["help"],
             "value": v["value"]
         })
-    val = filter(lambda x: x['type'] in ['Masscan', 'Cycle', 'Scan_list', 'Port_list'], val)
+    val = filter(lambda x: x['type'] in ['Scan_list'], val)
     return render_template('config.html', values=val)
 
 

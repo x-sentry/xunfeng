@@ -1,27 +1,27 @@
 $('.update').click(function () {
-    name = $(this).attr('inputname');
+    name  = $(this).attr('inputname');
     value = $(document.getElementsByName($(this).attr('inputname'))).val();
     if (name == "Masscan") {
         value = $("#speed").val() + "|" + value;
     }
     $.post('/updateconfig', {
-        name: name,
-        value: value,
+        name    : name,
+        value   : value,
         conftype: location.search.replace('?', '').split('&')[0].split('=')[1]
     }, function (data) {
         if (data == 'success') {
-            swal("更新成功", '', "success");
+            swal("启动探测任务成功", '', "success");
         }
         else {
-            swal("更新失败", '请检查数据完整性', "error");
+            swal("启动探测任务成功失败", '请检查数据完整性', "error");
         }
     })
 });
 
 $('#mastag').change(function () {
-    var name = "Masscan_Flag";
+    var name     = "Masscan_Flag";
     var conftype = "nascan";
-    var value = $(this).is(':checked') == true ? "1" : "0";
+    var value    = $(this).is(':checked') == true ? "1" : "0";
     $.post('/updateconfig', {name: name, value: value, conftype: conftype}, function (data) {
         if (data == "patherr") {
             $("#mastag").click();
@@ -35,9 +35,9 @@ $('#mastag').change(function () {
 
 
 $('#icmptag').change(function () {
-    var name = "Port_list_Flag";
+    var name     = "Port_list_Flag";
     var conftype = "nascan";
-    var value = $(this).is(':checked') == true ? "1" : "0";
+    var value    = $(this).is(':checked') == true ? "1" : "0";
     $.post('/updateconfig', {name: name, value: value, conftype: conftype}, function (data) {
         if (data !== 'success') {
             swal("更新失败", '请检查数据完整性', "error");
@@ -46,13 +46,13 @@ $('#icmptag').change(function () {
 });
 
 $('.zmdi-help-outline').poshytip({
-    className: 'tip-twitter',
-    showTimeout: 1,
-    alignTo: 'target',
-    alignX: 'center',
-    alignY: 'bottom',
-    offsetY: 5,
+    className    : 'tip-twitter',
+    showTimeout  : 1,
+    alignTo      : 'target',
+    alignX       : 'center',
+    alignY       : 'bottom',
+    offsetY      : 5,
     allowTipHover: false,
-    fade: false,
-    slide: false
+    fade         : false,
+    slide        : false
 });

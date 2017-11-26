@@ -1,28 +1,28 @@
 function getQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-    var r = window.location.search.substr(1).match(reg);
+    var r   = window.location.search.substr(1).match(reg);
     if (r != null) return unescape(r[2]);
     return null;
 }
 
 $('.tag').click(function () {
-    if ($(this).hasClass('zmdi-plus')) {
-        $(this).removeClass('zmdi-plus').addClass('zmdi-minus')
-    } else if ($(this).hasClass('zmdi-minus')) {
-        $(this).removeClass('zmdi-minus').addClass('zmdi-plus')
+    if ($(this).hasClass('fa-eye')) {
+        $(this).removeClass('fa-eye').addClass('fa-eye-slash')
+    } else if ($(this).hasClass('fa-eye-slash')) {
+        $(this).removeClass('fa-eye-slash').addClass('fa-eye')
     }
 });
-$('.zmdi-close').click(function () {
+$('.delete-task').click(function () {
     var oid = $(this).attr('id');
     swal({
-            title: "确认删除？",
-            text: "所有删除操作将不可逆，请谨慎操作",
-            type: "warning",
-            showCancelButton: true,
+            title             : "确认删除？",
+            text              : "所有删除操作将不可逆，请谨慎操作",
+            type              : "warning",
+            showCancelButton  : true,
             confirmButtonColor: "#DD6B55",
-            confirmButtonText: "确定",
-            cancelButtonText: "取消",
-            closeOnConfirm: false
+            confirmButtonText : "确定",
+            cancelButtonText  : "取消",
+            closeOnConfirm    : false
         },
         function () {
             $.post('/deletetask', {oid: oid}, function (e) {
@@ -40,14 +40,14 @@ $('.zmdi-close').click(function () {
 
 $('.deleteall').click(function () {
     swal({
-            title: "确认删除？",
-            text: "所有删除操作将不可逆，请谨慎操作",
-            type: "warning",
-            showCancelButton: true,
+            title             : "确认删除？",
+            text              : "所有删除操作将不可逆，请谨慎操作",
+            type              : "warning",
+            showCancelButton  : true,
             confirmButtonColor: "#DD6B55",
-            confirmButtonText: "确定",
-            cancelButtonText: "取消",
-            closeOnConfirm: false
+            confirmButtonText : "确定",
+            cancelButtonText  : "取消",
+            closeOnConfirm    : false
         },
         function () {
             $.post('/deleteall', function (e) {
@@ -72,11 +72,11 @@ $('.deleteall').click(function () {
 $('.recheck').click(function () {
     taskid = $(this).parents('h4').children().first().attr('href').split('=')[1];
     swal({
-            title: "复测该任务",
-            text: "立即重新执行该任务（历史数据不会删除）",
-            type: "info",
-            showCancelButton: true,
-            closeOnConfirm: false,
+            title              : "复测该任务",
+            text               : "立即重新执行该任务（历史数据不会删除）",
+            type               : "info",
+            showCancelButton   : true,
+            closeOnConfirm     : false,
             showLoaderOnConfirm: true
         },
         function () {
@@ -117,10 +117,10 @@ function taskprePage() {
 function taskturnTo(page) {
     curPage = getQueryString('page');
     if (curPage != null) {
-        url = location.href.replace("?page=" + getQueryString('page'), "?page=" + page);
+        url           = location.href.replace("?page=" + getQueryString('page'), "?page=" + page);
         location.href = url
     } else {
-        url = location.href + "?page=" + page;
+        url           = location.href + "?page=" + page;
         location.href = url
     }
 }
