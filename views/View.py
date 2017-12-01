@@ -233,6 +233,9 @@ def DownloadXls():
     tid = request.args.get('taskid', '')
     taskdate = request.args.get('taskdate', '')
     result_list = []
+
+    print tid
+    print taskdate
     if tid:  # 有任务id
         if taskdate:  # 从任务中拉取指定批次扫描结果
             taskdate = datetime.strptime(taskdate, "%Y-%m-%d %H:%M:%S.%f")

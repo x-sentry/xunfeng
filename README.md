@@ -196,3 +196,15 @@ def check(ip,port,timeout):
 扫描下方二维码关注YSRC公众号，回复自己的微信号+巡风，会有人拉你进巡风的微信讨论群。
 
 ![](http://mmbiz.qpic.cn/mmbiz/PAV8ewtdsKpkeG9VRYNhC76iacVSe3ichYiajictdF2Q34PQo7iaPV15jjGiaAev6SqpeK5maDvtAYUtqXEYUib4ljM3A/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
+
+
+## 提几个问题
+- id 是一个内建方法，不要使用其作为变量
+- 方法名别写驼峰或者大写开头，ide会红一大片
+- 业务逻辑和底层实现不要混合在一层
+- 代码逻辑，尽早提前return
+- 推荐使用mongoengine这种带schema的orm库
+- 代码要分模块存放，一个view.py 真的看起来很累
+- 400 500 页面 要使用app.errhandler统一处理，并不是现在的做法
+- 上条如果实现了，那么就不需要在装饰器内部进行try了，比较人肉
+- 一定要打开pep8代码风格检测

@@ -19,14 +19,14 @@
         <div class="row" style="margin-bottom: 20px">
             <div class="col-sm-12">
                 <div style="margin-top: 0px">
-                    <span style="font-weight: bold;color:#e1e1e1;">插件总数:
-                        <span style="font-size:14px;color:teal">{{ count }}</span></span>
+                    <span style="font-weight: bold;;font-size: 16px">插件总数:
+                        <span style="font-size:16px;color:tomato">{{ count }}</span></span>
                 </div>
             </div>
         </div>
         <div class="row">
             {% for i in cursor %}
-                <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="col-sm-6 col-md-6 col-lg-6">
                     <div class="portlet" style="background-color:#0D182E;border-radius:0; margin-bottom: 5px">
                         <div class="portlet-heading portlet-default">
 
@@ -55,14 +55,13 @@
                                 </div>
                             {% endif %}
 
+
                             <a data-toggle="collapse" data-parent="#accordion1" href="#bg-primary{{ loop.index0 }}">
                                 <h3 class="portlet-title"
                                     style="border-left:3px solid teal;padding-left:10px;line-height: 20px;font-size: 14px">
                                     {{ i['name'] }}
-                                    <span class="iconfont" title="查看插件详情"
-                                          style="float:right;padding-right:20px;color:teal;">
-                                        &#xe6f8
-                                    </span>
+                                    <image src="/static/images/pluginfo.gif" width="100px" height="20px"
+                                           style="float: right;margin-right: 10px;"></image>
                                 </h3>
                             </a>
 

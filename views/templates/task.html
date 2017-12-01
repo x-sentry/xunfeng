@@ -14,6 +14,52 @@
             background: #172440 !important;
             height: 100%;
         }
+
+        .common-box-shadow {
+            box-shadow: 1px 1px 1px rgb(30, 30, 30) !important;
+            background: rgba(34, 133, 204, 0.6) !important;
+            border-radius: 2px !important;
+        }
+
+        .common-box-shadow :hover {
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.78) !important;
+            background: rgba(34, 157, 234, 0.75) !important;
+        }
+
+        .btn-danger {
+            border: 1px solid rgba(33, 130, 199, 0.54) !important;
+        }
+
+        .btn-tag {
+            background-color: rgba(34, 133, 204, 0.6) !important;
+            color: white;
+        }
+
+        .tag-danger {
+            background-color: rgba(183, 21, 21, 0.6);
+            float: right;
+            margin: 5px 10px 0 0
+        }
+
+        .tag-high {
+            background-color: rgba(230, 108, 61, 0.6);
+            float: right;
+            margin: 5px 10px 0 0
+        }
+
+        .tag-middle {
+            background-color: rgba(220, 175, 49, 0.6);
+            float: right;
+            margin: 5px 10px 0 0
+        }
+
+        .tag-low {
+            background-color: rgba(147, 48, 179, 0.6);
+            float: right;
+            margin: 5px 10px 0 0
+        }
+
+
     </style>
 {% endblock %}
 
@@ -23,16 +69,19 @@
             <div class="col-sm-12">
                 <div class="btn-group pull-right m-t-15"
                      style="margin-bottom:15px!important;margin-top: 0px !important; ">
-                    <a type="button" class="btn btn-tag dropdown-toggle waves-effect waves-light"
-                       href="/downloadxls" style="color: white;margin-right:5px;width:74px;">下载
+                    <a type="button" class="btn btn-danger dropdown-toggle waves-effect waves-light common-box-shadow"
+                       href="/downloadxls" style="color: white;margin-right:5px;width:74px;">
+                        下载
                     </a>
-                    <a type="button" class="btn btn-danger dropdown-toggle waves-effect waves-light deleteall"
-                       style="color: white">删除全部
+                    <a type="button"
+                       class="btn btn-danger dropdown-toggle waves-effect waves-light deleteall common-box-shadow"
+                       style="color: white">
+                        删除全部
                     </a>
                 </div>
                 <div style="margin-top: 5px;margin-bottom: 15px">
-                    <span style="font-weight: bold;font-size: 14px;color:#e1e1e1;">
-                        任务总数:  <span style="font-size:14px;color:teal;">{{ item.count() }}</span></span>
+                    <span style="font-weight: bold;font-size: 16px;color:#e1e1e1;">
+                        任务总数:  <span style="font-size:16px;color:tomato;">{{ item.count() }}</span></span>
                 </div>
             </div>
         </div>
@@ -44,38 +93,71 @@
                         <h4 class="m-t-0 m-b-5"
                             style="height:20px;border-left:3px solid teal; padding-left:10px;width:66%;white-space: nowrap">
                             <a href="/taskdetail?taskid={{ i['_id'] }}" target="_blank" title="{{ i['title'] }}"
-                               style="color:white">{{ i['title'] }}</a>
-                            <div style="position: absolute;right: 20px;top: 10px;color:#999999">
+                               style="color:white">
+                                {{ i['title'] }}
+                            </a>
+
+                            <div style="position: absolute;right: 100px;top: 26px;color:#999999">
+
+                                {% if i['plan'] == 0 %}
+                                    {% if i['status'] == 0 %}
+                                        <div class="label font-13 tag-high"
+                                             style="margin: 0px;font-size: 12px !important;padding: 7px 10px;margin: 0px 5px">
+                                            未执行
+                                        </div>
+                                    {% endif %}
+
+                                    {% if i['status'] == 1 %}
+                                        <div class="label font-13 tag-high"
+                                             style="margin: 0px;font-size: 12px !important;padding: 7px 10px;margin: 0px 5px">
+                                            正在执行
+                                        </div>
+                                    {% endif %}
+
+                                    {% if i['status'] == 2 %}
+                                        <div class="label font-13 tag-high"
+                                             style="margin: 0px;font-size: 12px !important;padding: 7px 10px;margin: 0px 5px">
+                                            已完成
+                                        </div>
+                                    {% endif %}
+
+                                {% endif %}
+
+
+                            </div>
+
+
+                            <div style="position: absolute;right: 20px;top: 26px;color:#999999">
+
                                 {% if i['plan'] == 0 %}
                                     {% if i['status']== 0 %}
-                                        <i class="zmdi zmdi-hourglass-outline" style="color: #337ab7;;" title="未执行"></i>
                                     {% elif i['status']== 1 %}
-                                        <i class="zmdi zmdi-hourglass-alt" style="color: #337ab7;;" title="正在执行"></i>
                                     {% elif i['status']== 2 %}
                                         <a href="javascript:void(0)" title="已完成，可复测" style="color: #337ab7;;"
                                            class="recheck">
-                                            <i class="fa fa-refresh" style="color: #337ab7;;"></i>
+                                            <i class="fa fa-refresh" style="color: #337ab7;font-size: 24px;"></i>
                                         </a>
                                     {% else %}
                                         <i class="zmdi zmdi-alert-triangle" style="color: #337ab7;;"></i>
                                     {% endif %}
                                 {% else %}
-                                    {% if i['isupdate'] == 1 %}
-                                        <i class="zmdi zmdi-refresh" title="循环任务" style="color: #337ab7;;"></i>
-                                    {% endif %}
-                                    <i class="zmdi zmdi-calendar-check" title="循环周期"
-                                       style="color: #337ab7;;">{{ i['plan'] }}</i>
-                                    <i class="zmdi zmdi-chart-donut" title="已循环次数"
-                                       style="color: #337ab7;;">{{ i['status'] }}</i>
                                 {% endif %}
                                 <a data-toggle="collapse" data-parent="#accordion1" title="查看任务详情"
                                    href="#bg-primary{{ loop.index0 }}">
-                                    <i class="fa fa-eye tag" style="color:#337ab7"></i>
+                                    <i class="fa fa-eye tag" style="color:#337ab7;font-size: 24px"></i>
                                 </a>
-                                <a href="javascript:void(0);">
-                                    <i class="fa fa-trash delete-task" title="删除任务" id="{{ i['_id'] }}"></i>
+                                <a href="javascript:void(0);" style="">
+                                    <i class="fa fa-trash delete-task"
+                                       style="font-size: 24px"
+                                       title="删除任务"
+                                       id="{{ i['_id'] }}">
+                                    </i>
                                 </a>
+
+
                             </div>
+
+
                         </h4>
 
                         <div style="line-height: 2">
