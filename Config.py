@@ -1,11 +1,11 @@
 class Config(object):
     ACCOUNT = 'admin'
-    PASSWORD = 'xunfeng321'
+    PASSWORD = 'tiange321'
 
 
 class ProductionConfig(Config):
-    DB = '127.0.0.1'
+    DB = '47.93.35.216'
     PORT = 27017
-    DBUSERNAME = 'root'
-    DBPASSWORD = 'root'
-    DBNAME = 'xunfeng'
+    DBUSERNAME = 'tiangedb'
+    DBPASSWORD = 'tiange321'
+    DBNAME = 'tiange'
