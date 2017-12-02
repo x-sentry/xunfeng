@@ -76,7 +76,7 @@ def Getplugin():
 
 # 新增任务异步
 @app.route('/addtask', methods=['get', 'post'])
-# @logincheck
+@logincheck
 @anticsrf
 def Addtask():
     title = request.form.get('title', '')
@@ -98,7 +98,7 @@ def Addtask():
                 targets.append(tar)
         else:  # 当前页结果选择
             for i in ids.split(','):
-                tar = [i.split(':')[0], int(i.split(':')[0])]
+                tar = [i.split(':')[0], int(i.split(':')[1])]
                 targets.append(tar)
         temp_result = True
         for p in plugin.split(','):
