@@ -87,39 +87,21 @@ def Addtask():
     isupdate = request.form.get('isupdate', '0')
     resultcheck = request.form.get('resultcheck', '0')
     result = 'fail'
-    print title
-    print plugin
-    print condition
-    print plan
-    print ids
-    print isupdate
-    print resultcheck
-
     if plugin:
         targets = []
-        print 'ssss'
         if resultcheck == 'true':  # 结果集全选
             list = condition.strip().split(';')
             query = querylogic(list)
             cursor = Mongo.coll['Info'].find(query)
-            print 'eee33'
             for i in cursor:
                 tar = [i['ip'], i['port']]
                 targets.append(tar)
         else:  # 当前页结果选择
-            print '55555'
             for i in ids.split(','):
-                print i
-                print i.split(':')
-                print type(i.split(':'))
-                # tar = [i.split(':')[0], int(i.split(':')[0])]
-                tar = [i.split(':')[0], i.split(':')[0]]
-                print tar
+                tar = [i.split(':')[0], int(i.split(':')[0])]
                 targets.append(tar)
         temp_result = True
-        print 88888
         for p in plugin.split(','):
-            print '9999'
             query = querylogic(condition.strip().split(';'))
             item = {'status': 0, 'title': title, 'plugin': p, 'condition': condition, 'time': datetime.now(),
                     'target': targets, 'plan': int(plan), 'isupdate': int(isupdate), 'query': dumps(query)}
