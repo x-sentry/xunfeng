@@ -446,7 +446,7 @@ function right_pie(id, sort_pie) {
             show     : true,
             color    : '#e2e2e2',
             orient   : 'vertical',
-            x        : '200',
+            right    : '30',
             top      : '20',
             textStyle: {
                 color   : text_color,
