@@ -446,7 +446,7 @@ function right_pie(id, sort_pie) {
             show     : true,
             color    : '#e2e2e2',
             orient   : 'vertical',
-            x        : '240',
+            x        : '200',
             top      : '20',
             textStyle: {
                 color   : text_color,
@@ -469,21 +469,16 @@ function right_pie(id, sort_pie) {
                 radius        : [(pie_int - 15), pie_int],
                 itemStyle     : dataStyle,
                 data          : []
-            },
-
+            }
         ]
     };
     for (var i = 0; i < sort_pie.rawDate.length; i++) {
-        option.series.data.push({
-            value    : sort_pie.rawDate[i]['count'],
-            name     : sort_pie.rawDate[i]['type'],
-            itemStyle: {
-                normal: {
-                    // color: '#0E8DEE'
-                }
-            }
+        option.series[0].data.push({
+            value: sort_pie.rawDate[i]['count'],
+            name : sort_pie.rawDate[i]['type']
         });
     }
+    console.dir(option)
     myChart.setOption(option);
 }
 
