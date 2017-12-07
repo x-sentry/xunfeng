@@ -139,28 +139,28 @@ def Recheck():
 
 # 任务详情页面
 @app.route('/taskdetail')
-@logincheck
+# @logincheck
 def TaskDetail():
-    id = request.args.get('taskid', '')
+    _id = request.args.get('taskid', '')
     page = int(request.args.get('page', '1'))
     taskdate = request.args.get('taskdate', "")
     plugin_name = ''
-    task_info = Mongo.coll['Task'].find_one({'_id': ObjectId(id)})
+    task_info = Mongo.coll['Task'].find_one({'_id': ObjectId(_id)})
     if task_info:
         plugin_name = task_info['plugin']
     vulcount = 0
-    lastscan = Mongo.coll["Result"].distinct('task_date', {'task_id': ObjectId(id)})
+    lastscan = Mongo.coll["Result"].find({'task_id': ObjectId(_id)}).distinct('task_date')
     result_list = []
     if len(lastscan) > 0:
         lastscan.sort(reverse=True)
         if taskdate:  # 根据扫描批次查看结果
             cursor = Mongo.coll['Result'].find(
-                {'task_id': ObjectId(id), 'task_date': datetime.strptime(taskdate, "%Y-%m-%d %H:%M:%S.%f")}).sort(
+                {'task_id': ObjectId(_id), 'task_date': datetime.strptime(taskdate, "%Y-%m-%d %H:%M:%S.%f")}).sort(
                 'time', -1).limit(page_size).skip((page - 1) * page_size)
         else:  # 查看最新批次结果
             taskdate = lastscan[0].strftime("%Y-%m-%d %H:%M:%S.%f")
             cursor = Mongo.coll['Result'].find(
-                {'task_id': ObjectId(id), 'task_date': lastscan[0]}).sort('time', -1).limit(page_size).skip(
+                {'task_id': ObjectId(_id), 'task_date': lastscan[0]}).sort('time', -1).limit(page_size).skip(
                 (page - 1) * page_size)
         vulcount = cursor.count()
         for _ in cursor:
@@ -188,7 +188,7 @@ def TaskDetail():
                     _['hostname'] = hostname['hostname']
                 else:
                     _['hostname'] = ''
-    return render_template('detail.html', item=result_list, count=vulcount, id=id, taskdate=taskdate,
+    return render_template('detail.html', item=result_list, count=vulcount, id=_id, taskdate=taskdate,
                            plugin_name=plugin_name, scanlist=lastscan)
 
 
