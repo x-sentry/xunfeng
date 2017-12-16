@@ -1,6 +1,6 @@
 six>=1.6.0
 Flask
-pymongo==2.8
+pymongo
 xlwt
 paramiko
 packaging

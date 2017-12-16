@@ -194,14 +194,14 @@ def TaskDetail():
 
 # 删除任务异步
 @app.route('/deletetask', methods=['get', 'post'])
-@logincheck
-@anticsrf
+# @logincheck
+# @anticsrf
 def DeleteTask():
     oid = request.form.get('oid', '')
     if oid:
-        result = Mongo.coll['Task'].delete_one({'_id': ObjectId(oid)})
-        if result.deleted_count > 0:
-            result = Mongo.coll['Result'].delete_many({'task_id': ObjectId(oid)})
+        result = Mongo.coll['Task'].remove({'_id': ObjectId(oid)})
+        if result['ok'] > 0:
+            result = Mongo.coll['Result'].remove({'task_id': ObjectId(oid)})
             if result:
                 return 'success'
     return 'fail'
