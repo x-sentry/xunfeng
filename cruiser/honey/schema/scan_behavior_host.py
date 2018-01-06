@@ -9,7 +9,7 @@ class ScanBehaviorHost(Document):
         'indexes': [
             {
                 'fields': ['created'],
-                'expireAfterSeconds': 3600
+                'expireAfterSeconds': 60 * 2
             }
         ]
     }
