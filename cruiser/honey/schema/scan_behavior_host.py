@@ -1,0 +1,12 @@
+# coding: utf-8
+from mongoengine import *
+
+
+class ScanBehaviorHost(Document):
+    meta = {'collection': 'scan_behavior_host'}
+    """
+    扫描类型的机器
+    特征是：高频率扫描多个端口
+    """
+    ip = StringField()
+    accessed_services = DictField()

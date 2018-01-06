@@ -1,0 +1,298 @@
+{% extends "layout.html" %}
+{% block css %}
+    <link href="static/buss/css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="static/plugin/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
+    <link href="static/plugin/multiselect/css/multi-select.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .modal-title {
+            color: #e1e1e1;
+        }
+
+        html {
+            position: relative;
+            min-height: 100%;
+            background: #172440 !important;
+        }
+
+        .modal-header {
+            border-bottom: 1px solid rgba(33, 66, 95, 0.6) !important;
+            margin-bottom: 10px;
+        }
+
+        .form-control {
+            background-color: rgba(30, 57, 72, 0.6) !important;
+            border: 1px solid #2e4a54 !important;
+            border-radius: 0px !important;
+            color: #FFFFFF;
+            padding: 7px 12px;
+            height: 38px;
+            max-width: 100%;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            transition: all 300ms linear;
+        }
+
+        .search-ctrl {
+            background-color: rgba(30, 57, 72, 0.6) !important;
+            border: 1px solid #28818b !important;
+            border-radius: 5px !important;
+            color: #FFFFFF;
+            padding: 7px 12px;
+            height: 34px;
+            max-width: 100%;
+            box-shadow: none;
+            transition: all 300ms linear;
+        }
+
+        .search-ctrl:hover {
+            background-color: rgba(30, 57, 72, 0.6) !important;
+            border: 1px solid #44d6e1 !important;
+            border-radius: 20px !important;
+            -webkit-box-shadow: none;
+            box-shadow: inset 0px 0px 2px #4e717c;
+            transition: all 300ms linear;
+        }
+
+        .modal-body hr {
+            border-top: 1px solid rgba(135, 135, 135, 0) !important;
+        }
+
+        .btn-close {
+            background-color: rgba(0, 0, 0, 0) !important;
+            border: 1px solid #a53b40 !important;
+        }
+
+        .btn-close:hover {
+            background-color: #a53b40 !important;
+        }
+
+        .btn-save {
+            background-color: rgba(0, 0, 0, 0) !important;
+            border: 1px solid #344658 !important;
+        }
+
+        .btn-save:hover {
+            background-color: #344658 !important;
+        }
+
+        .project-box {
+            background-color: #0D182E !important;
+            border-radius: 0 !important;
+        }
+
+        .search-add-goal-btn {
+            border: 1px solid #344658 !important;
+            background-color: rgba(0, 0, 0, 0) !important;
+        }
+
+        .search-add-goal-btn:hover {
+            background-color: #344658 !important;
+        }
+
+        .search-add-task-btn {
+            border: 1px solid #175758 !important;
+            background-color: rgba(0, 0, 0, 0) !important;
+        }
+
+        .search-add-goal-btn:hover {
+            background-color: #175758 !important;
+        }
+
+        .common-box-shadow {
+            box-shadow: 1px 1px 1px rgb(30, 30, 30) !important;
+            border-radius: 2px !important;
+        }
+
+        .common-box-shadow :hover {
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.78) !important;
+            background: rgba(36, 174, 255, 0.79) !important;
+        }
+
+    </style>
+{% endblock %}
+
+{% block webinfo %}
+    <div class="container">
+        <div class="row" style="margin-bottom: 20px">
+            <div class="col-sm-12">
+                <div class="btn-group pull-right m-t-15"
+                     style="margin-top: 0px !important;position:relative;top: -8px;">
+                    <form method="get" action="/" role="form"
+                          style="margin-right: 10px;color:white;background: rgba(0,128,128,0);float: left;">
+                        <i class="zmdi zmdi-help-outline zmdi-hc-2x"
+                           style="position: relative;font-size: 14px;position: relative;top: 8px;font-weight: 100;color: teal"
+                           id="tips"></i>
+                        <input type="text" class="search-ctrl"
+                               id="filter"
+                               name="q"
+                               placeholder="搜索比如 ip:   回车搜索"
+                               style="margin-right: 10px;color:white;background: rgba(0,128,128,0);float: left;">
+                        </input>
+                    </form>
+
+                    {% if itemcount %}
+                        <a href="{{ url_for('search_result_xls') }}?query={{ query }}" type="button"
+                           class="btn btn-tag waves-effect waves-light common-box-shadow"
+                           style="margin-right: 5px;color:white">
+                            下载搜索结果
+                        </a>
+                    {% endif %}
+                </div>
+                <div style="margin-top: 0px;color:white">
+
+                    <span style="margin-right: 20px;position:relative;top: -1px;font-size: 18px;font-weight: 600;position:relative;">
+                        <span style="">危险主机数量:</span>
+                        <span style="color: tomato;">{{ itemcount }}</span>
+                    </span>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="content">
+            {% for i in item %}
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="card-box project-box" style="margin-bottom: 10px">
+
+                        <div class="row">
+                            <div>
+                                <a data-toggle="collapse" data-parent="#accordion{{ loop.index0 }}"
+                                   href="#bg-primary{{ loop.index0 }}"
+                                   style="position: absolute;right:33px;top: 30px;">
+                                    <i class="fa fa-eye tag" style="font-size: 20px"></i>
+                                </a>
+
+                                <a href="javascript:void(0)" style="position: absolute;right:10px;;top: 30px;">
+                                    <input id="checkbox{{ loop.index0 }}" type="checkbox" class="itemcheck"
+                                           infoid="{{ i['ip'] }}:{{ i['port'] }}">
+                                </a>
+                            </div>
+                            <div>
+                                <h4 class="m-t-0 m-b-5" style="height: 40px;line-height: 40px;padding-left: 10px">
+                                    <i class="fa fa-desktop"
+                                       style="position:relative;top: 1px;font-size: 40px;display: inline-block;margin-right: 5px"></i>
+                                    {% if i['server']=='web' %}
+                                        {% if i['port']==443 %}
+                                            <a href="https://{{ i['ip'] }}:{{ i['port'] }}" class="text-name"
+                                               style="position: relative; top: -10px;"
+                                               target="_blank">{{ i['ip'] }}:{{ i['port'] }}</a>
+                                        {% else %}
+                                            <a href="http://{{ i['ip'] }}:{{ i['port'] }}" class="text-name"
+                                               style="position: relative; top: -10px;"
+                                               target="_blank">{{ i['ip'] }}:{{ i['port'] }}</a>
+                                        {% endif %}
+                                    {% else %}
+                                        <span style="position: relative; top: -10px;"> {{ i['ip'] }}:{{ i['port'] }}</span>
+                                    {% endif %}
+
+                                </h4>
+                            </div>
+                        </div>
+
+
+                        <div style="margin-top: 8px">
+                            <b class="text-purple">资产标签：</b>
+                            <div class="label label-purple"
+                                 style="padding: 2px 6px;position:relative;;">{{ i['server'] }}</div>
+                            {% if 'tag' in i['webinfo'] and i['webinfo']['tag'] %}
+                                {% for t in i['webinfo']['tag'] %}
+                                    <div class="label label-success" title="tag"
+                                         style="font-size: 12px;padding: 2px 6px;position:relative;;">{{ t }}</div>
+                                {% endfor %}
+                            {% endif %}
+                            {% if 'title' in i['webinfo'] and i['webinfo']['title'] %}
+                                <div class="label label-info"
+                                     style="padding: 2px 6px;position:relative;;"
+                                     title="{{ i['webinfo']['title'] }}">{{ i['webinfo']['title'] }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <p class="text-purple m-b-10 font-13" style="margin-top: 3px">
+                            <b>创建时间：</b>
+                            {{ i['time'].strftime('%Y-%m-%d %H:%M:%S') }}
+                        </p>
+                        <div class="clearfix"></div>
+                        <div id="bg-primary{{ loop.index0 }}" class="panel-collapse collapse">
+                            {% if i['hostname'] %}
+                                <p class="text-purple m-b-10 font-13">
+                                    <b>HostName: </b>
+                                    {{ i['hostname'] }}
+                                </p>
+                            {% endif %}
+                            <p class="text-muted font-13">
+                                <b>Banner: </b>
+                                {{ i['banner'] }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if itemcount>60 %}
+            <div class="row" style="float: right;margin-right: 10px">
+                <ul class="pagination pagination-split">
+                    <li>
+                        <a href="javascript:prePage()"><i class="fa fa-angle-left"></i>前一页</a>
+                    </li>
+                    {% if itemcount % 60 ==0 %}
+                        {% for i in range(1,itemcount//60 + 1) %}
+                            <li>
+                                <a href="javascript:turnTo({{ i }})">{{ i }}</a>
+                            </li>
+                        {% endfor %}
+                    {% else %}
+                        {% for i in range(1,(itemcount//60) + 2) %}
+                            <li>
+                                <a href="javascript:turnTo({{ i }})">{{ i }}</a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                    <li>
+                        <a href="javascript:nextPage()">后一页<i class="fa fa-angle-right"></i></a>
+                    </li>
+                </ul>
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="static/plugin/sweetalert/sweetalert.min.js"></script>
+    <script src="static/plugin/multiselect/js/jquery.multi-select.js"></script>
+    <script src="static/buss/js/result.js"></script>
+    <script src="static/plugin/jquery.poshytip.min.js"></script>
+    <style>
+        .xxxxx {
+            color: #dee5db;
+        }
+    </style>
+    <script>
+
+        $('#tips').poshytip({
+            className    : 'tip-twitter',
+            showTimeout  : 1,
+            alignTo      : 'target',
+            alignX       : 'center',
+            alignY       : 'bottom',
+            offsetX      : -100,
+            offsetY      : 30,
+            allowTipHover: false,
+            fade         : false,
+            slide        : false,
+            content      : "<div style='background:#dee5db;border-radius:4px;padding:12px 20px;box-shadow:0px 0px 20px black'><p style='font-weight:600'>查询方法：</p> \
+                        <p>1.按端口： port:端口号 eg. port:22</p>\
+                        <p>2.按banner： banner:banner内容关键词 eg. banner:ftp</p>\
+                        <p>3.按ip(支持c段，b段模糊查询)： ip:ip地址  eg. ip:192.168.1.1／ip:192.168.1.</p>\
+                        <p>4.按服务名： server:服务名  eg. server:iis</p>\
+                        <p>5.按标题： title:标题内容关键词 eg. title:xxx管理系统</p>\
+                        <p>6.按服务类型标签： tag:服务类型 eg. tag:apache</p>\
+                        <p>7.按主机名： hostname:主机名 eg. hostname:server001</p>\
+                        <p>8.全局模糊： all:查询内容  eg. all:tongcheng</p>\
+                        <p>9.多条件： 条件1:内容1;条件2:内容2  eg. ip:192.168.1.1;port:22</p></div>",
+        });
+        $("#cruiser-hook").css("background-color", "teal");
+    </script>
+{% endblock %}

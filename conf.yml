@@ -1,0 +1,82 @@
+app:
+  license:
+    name: curisier
+    version: 1.0.0
+    author: owen-carter
+    updateTime: 2017-12-12
+  loginCredential:
+    name: admin
+    pwd: admin123
+  strategy:
+    brute:
+        timeout: 2
+        timeoutDesc: 超时时间
+        limit: 20
+        limitDesc: 攻击某端口数量上限
+    scan:
+        timeout: 2
+        timeoutDesc: 超时时间
+        limit: 1
+        limitDesc: 扫描端口数量上限
+db:
+    mongodb:
+        host: localhost
+        port: 27017
+        db: xunfeng
+        username: xunfeng
+        password: xunfeng123
+    redis:
+        host: localhost
+        port: 6379
+        bucket: 0
+        username:
+        password:
+services:
+  - name: ftp
+    port: 21
+  - name: ssh
+    port: 22
+  - name: telent
+    port: 23
+  - name: smtp
+    port: 25
+  - name: ldap
+    port: 389
+  - name: rdp
+    port: 3389
+  - name: vnc
+    port: 5901
+  - name: vnc
+    port: 5902
+  - name: Pcanywhere
+    port: 5632
+  - name: http
+    port: 80
+  - name: http
+    port: 8080
+  - name: http
+    port: 8000
+  - name: https
+    port: 443
+  - name: https
+    port: 8443
+  - name: jenkins
+    port: 8089
+  - name: mysql
+    port: 3306
+  - name: oracle
+    port: 1521
+  - name: PostgreSQL
+    port: 5432
+  - name: mongodb
+    port: 27017
+  - name: redis
+    port: 6379
+  - name: SysBase
+    port: 5000
+  - name: zabbix
+    port: 8069
+  - name: memcache
+    port: 11211
+  - name: rsync
+    port: 873

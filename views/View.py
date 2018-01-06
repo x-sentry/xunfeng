@@ -2,19 +2,33 @@
 
 import json
 import os
+import urllib2
+import yaml
 from datetime import datetime
 from urllib import unquote, urlopen, urlretrieve, quote, urlencode
+
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 from flask import request, render_template, redirect, url_for, session, make_response, jsonify
+from werkzeug.utils import secure_filename
+
+from lib.AntiCSRF import anticsrf
+from lib.Conn import MongoDB
 from lib.CreateExcel import *
 from lib.Login import logincheck
-from lib.AntiCSRF import anticsrf
 from lib.QueryLogic import querylogic
-from werkzeug.utils import secure_filename
-from . import app, Mongo, page_size, file_path
-import urllib2
-import copy
+from . import app, page_size, file_path
+
+with open('./conf.yml') as f:
+    conf = yaml.load(f)
+    mongo_conf = conf['db']['mongodb']
+    Mongo = MongoDB(
+        host=mongo_conf['host'],
+        port=mongo_conf['port'],
+        db=mongo_conf['db'],
+        username=mongo_conf['username'],
+        password=mongo_conf['password']
+    )
 
 
 # 搜索页
@@ -49,6 +63,24 @@ def Main():
                                plugin_type=plugin_type, query=q)
     else:  # 自定义，无任何结果，用户手工添加
         return render_template('main.html', item=[], plugin=plugin, itemcount=0, plugin_type=plugin_type)
+
+
+# 搜索结果页
+@app.route('/cruiser')
+@logincheck
+def cruiser():
+    q = request.args.get('q', '')
+    page = int(request.args.get('page', '1'))
+    plugin = Mongo.coll['Plugin'].find()  # 插件列表
+    plugin_type = plugin.distinct('type')  # 插件类型列表
+    if q:  # 基于搜索条件显示结果
+        result = q.strip().split(';')
+        query = querylogic(result)
+        cursor = Mongo.coll['Info'].find(query).sort('time', -1).limit(page_size).skip((page - 1) * page_size)
+        return render_template('cruiser.html', item=cursor, plugin=plugin, itemcount=cursor.count(),
+                               plugin_type=plugin_type, query=q)
+    else:  # 自定义，无任何结果，用户手工添加
+        return render_template('cruiser.html', item=[], plugin=plugin, itemcount=0, plugin_type=plugin_type)
 
 
 # 获取插件信息异步
@@ -633,7 +665,8 @@ def Login():
     else:
         account = request.form.get('account')
         password = request.form.get('password')
-        if account == app.config.get('ACCOUNT') and password == app.config.get('PASSWORD'):
+        loginCredential = app.config.get('loginCredential')
+        if account == loginCredential['name'] and password == loginCredential['pwd']:
             session['login'] = 'loginsuccess'
             return redirect('/analysis')
         else:

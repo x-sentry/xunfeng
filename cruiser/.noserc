@@ -1,0 +1,5 @@
+[nosetests]
+with-doctest = 1
+where = ./test/
+logging-level = DEBUG
+debug-log = FILE
