@@ -67,20 +67,26 @@ def Main():
 
 # 搜索结果页
 @app.route('/cruiser')
-@logincheck
 def cruiser():
-    q = request.args.get('q', '')
-    page = int(request.args.get('page', '1'))
-    plugin = Mongo.coll['Plugin'].find()  # 插件列表
-    plugin_type = plugin.distinct('type')  # 插件类型列表
-    if q:  # 基于搜索条件显示结果
-        result = q.strip().split(';')
-        query = querylogic(result)
-        cursor = Mongo.coll['Info'].find(query).sort('time', -1).limit(page_size).skip((page - 1) * page_size)
-        return render_template('cruiser.html', item=cursor, plugin=plugin, itemcount=cursor.count(),
-                               plugin_type=plugin_type, query=q)
-    else:  # 自定义，无任何结果，用户手工添加
-        return render_template('cruiser.html', item=[], plugin=plugin, itemcount=0, plugin_type=plugin_type)
+    attack_type = request.args.get('attackType')
+    result = []
+    if attack_type == 'brute':
+        result = Mongo.coll['brute_behavior_host'].find()
+    if attack_type == 'scan':
+        result = Mongo.coll['scan_behavior_host'].find()
+
+    render_list = []
+    for item in result:
+        del item['_id']
+        render_list.append(item)
+    print render_list
+
+    service_in_monitor_list = Mongo.coll['service_in_monitor'].find()
+    service_list = []
+    for item in service_in_monitor_list:
+        del item['_id']
+        service_list.append(item)
+    return render_template('cruiser.html', renderList=render_list, serviceList=service_list, attack_type=attack_type)
 
 
 # 获取插件信息异步

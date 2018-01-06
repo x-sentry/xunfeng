@@ -2,6 +2,7 @@
 import socket
 import gevent
 import threading
+import time
 
 from gevent import socket, monkey
 from ..schema.scan_behavior_host import ScanBehaviorHost

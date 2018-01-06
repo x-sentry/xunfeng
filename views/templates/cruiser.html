@@ -111,47 +111,48 @@
     </style>
 {% endblock %}
 
+
 {% block webinfo %}
     <div class="container">
         <div class="row" style="margin-bottom: 20px">
-            <div class="col-sm-12">
-                <div class="btn-group pull-right m-t-15"
-                     style="margin-top: 0px !important;position:relative;top: -8px;">
-                    <form method="get" action="/" role="form"
-                          style="margin-right: 10px;color:white;background: rgba(0,128,128,0);float: left;">
-                        <i class="zmdi zmdi-help-outline zmdi-hc-2x"
-                           style="position: relative;font-size: 14px;position: relative;top: 8px;font-weight: 100;color: teal"
-                           id="tips"></i>
-                        <input type="text" class="search-ctrl"
-                               id="filter"
-                               name="q"
-                               placeholder="搜索比如 ip:   回车搜索"
-                               style="margin-right: 10px;color:white;background: rgba(0,128,128,0);float: left;">
-                        </input>
-                    </form>
-
-                    {% if itemcount %}
-                        <a href="{{ url_for('search_result_xls') }}?query={{ query }}" type="button"
-                           class="btn btn-tag waves-effect waves-light common-box-shadow"
-                           style="margin-right: 5px;color:white">
-                            下载搜索结果
-                        </a>
-                    {% endif %}
-                </div>
-                <div style="margin-top: 0px;color:white">
-
-                    <span style="margin-right: 20px;position:relative;top: -1px;font-size: 18px;font-weight: 600;position:relative;">
-                        <span style="">危险主机数量:</span>
-                        <span style="color: tomato;">{{ itemcount }}</span>
-                    </span>
-
-                </div>
+            <div class="col-sm-12" style="height: 38px;line-height: 38px;">
+                <span style="float: left;position: relative;top: 3px;color: #cccccc;">当前监测服务列表：</span>
+                {% for service in serviceList %}
+                    <div class="label label-purple"
+                         style="padding: 2px 6px;position:relative;float: left;margin: 0px 5px;top: 12px;">
+                        {{ service['service_name'] }}:{{ service['port'] }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-sm-12" style="height: 38px;line-height: 38px;">
+                <form id="selectAttackType" method="get" action="/cruiser" role="form"
+                      style="margin-right: 10px;color:white;background: rgba(0,128,128,0);float: right;">
+                    <select class="form-control"
+                            name="attackType"
+                            id="attackType"
+                            onchange="document.forms[0].submit()">
+                        <option value="scan"
+                                {% if attack_type=='scan' %} selected="selected" {% endif %}
+                                style="background-color:#1D323F !important;">
+                            端口扫描
+                        </option>
+                        <option value="brute"
+                                {% if attack_type=='brute' %} selected="selected" {% endif %}
+                                style="background-color:#1D323F !important;">
+                            暴力破解
+                        </option>
+                    </select>
+                </form>
+                <label for="field-risk" class="control-label"
+                       style="color:#e1e1e1;float: right;height: 38px;line-height: 38px;margin: 0px 10px;">
+                    <span>攻击类型:</span>
+                </label>
             </div>
         </div>
 
         <div class="row" id="content">
-            {% for i in item %}
-                <div class="col-lg-6 col-md-6 col-sm-6">
+            {% for i in renderList %}
+                <div class="col-lg-3 col-md-3 col-sm-3" style="color:rebeccapurple;">
                     <div class="card-box project-box" style="margin-bottom: 10px">
 
                         <div class="row">
@@ -159,105 +160,52 @@
                                 <a data-toggle="collapse" data-parent="#accordion{{ loop.index0 }}"
                                    href="#bg-primary{{ loop.index0 }}"
                                    style="position: absolute;right:33px;top: 30px;">
-                                    <i class="fa fa-eye tag" style="font-size: 20px"></i>
-                                </a>
-
-                                <a href="javascript:void(0)" style="position: absolute;right:10px;;top: 30px;">
-                                    <input id="checkbox{{ loop.index0 }}" type="checkbox" class="itemcheck"
-                                           infoid="{{ i['ip'] }}:{{ i['port'] }}">
                                 </a>
                             </div>
                             <div>
                                 <h4 class="m-t-0 m-b-5" style="height: 40px;line-height: 40px;padding-left: 10px">
                                     <i class="fa fa-desktop"
                                        style="position:relative;top: 1px;font-size: 40px;display: inline-block;margin-right: 5px"></i>
-                                    {% if i['server']=='web' %}
-                                        {% if i['port']==443 %}
-                                            <a href="https://{{ i['ip'] }}:{{ i['port'] }}" class="text-name"
-                                               style="position: relative; top: -10px;"
-                                               target="_blank">{{ i['ip'] }}:{{ i['port'] }}</a>
-                                        {% else %}
-                                            <a href="http://{{ i['ip'] }}:{{ i['port'] }}" class="text-name"
-                                               style="position: relative; top: -10px;"
-                                               target="_blank">{{ i['ip'] }}:{{ i['port'] }}</a>
-                                        {% endif %}
-                                    {% else %}
-                                        <span style="position: relative; top: -10px;"> {{ i['ip'] }}:{{ i['port'] }}</span>
-                                    {% endif %}
-
+                                    <span style="position: relative; top: -10px;"> {{ i['ip'] }}</span>
                                 </h4>
                             </div>
                         </div>
 
-
-                        <div style="margin-top: 8px">
-                            <b class="text-purple">资产标签：</b>
-                            <div class="label label-purple"
-                                 style="padding: 2px 6px;position:relative;;">{{ i['server'] }}</div>
-                            {% if 'tag' in i['webinfo'] and i['webinfo']['tag'] %}
-                                {% for t in i['webinfo']['tag'] %}
-                                    <div class="label label-success" title="tag"
-                                         style="font-size: 12px;padding: 2px 6px;position:relative;;">{{ t }}</div>
-                                {% endfor %}
-                            {% endif %}
-                            {% if 'title' in i['webinfo'] and i['webinfo']['title'] %}
-                                <div class="label label-info"
-                                     style="padding: 2px 6px;position:relative;;"
-                                     title="{{ i['webinfo']['title'] }}">{{ i['webinfo']['title'] }}
+                        {% if attack_type=='brute' %}
+                            <div style="margin-top: 8px">
+                                <b class="text-purple">攻击目标：</b>
+                                <div class="label label-danger" style="padding: 2px 6px;position:relative;">
+                                    {{ i['service'] }}:{{ i['port'] }}
                                 </div>
-                            {% endif %}
-                        </div>
+                            </div>
 
-                        <p class="text-purple m-b-10 font-13" style="margin-top: 3px">
-                            <b>创建时间：</b>
-                            {{ i['time'].strftime('%Y-%m-%d %H:%M:%S') }}
-                        </p>
-                        <div class="clearfix"></div>
-                        <div id="bg-primary{{ loop.index0 }}" class="panel-collapse collapse">
-                            {% if i['hostname'] %}
-                                <p class="text-purple m-b-10 font-13">
-                                    <b>HostName: </b>
-                                    {{ i['hostname'] }}
-                                </p>
-                            {% endif %}
-                            <p class="text-muted font-13">
-                                <b>Banner: </b>
-                                {{ i['banner'] }}
+                            <p class="text-purple m-b-10 font-13" style="margin-top: 3px">
+                                <b>疑似攻击次数：</b>
+                                {{ i['times'] }}
                             </p>
-                        </div>
+                        {% endif %}
+
+                        {% if attack_type=='scan' %}
+                            <div style="margin-top: 8px">
+                                <b class="text-purple">扫描端口列表：</b>
+                                {% for key,value in i.accessed_services.iteritems() %}
+                                    <div class="label label-danger"
+                                         style="padding: 2px 6px;position:relative;margin: 0px 3px;">
+                                        {{ key }}:{{ value }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
                     </div>
                 </div>
             {% endfor %}
         </div>
 
-        {% if itemcount>60 %}
-            <div class="row" style="float: right;margin-right: 10px">
-                <ul class="pagination pagination-split">
-                    <li>
-                        <a href="javascript:prePage()"><i class="fa fa-angle-left"></i>前一页</a>
-                    </li>
-                    {% if itemcount % 60 ==0 %}
-                        {% for i in range(1,itemcount//60 + 1) %}
-                            <li>
-                                <a href="javascript:turnTo({{ i }})">{{ i }}</a>
-                            </li>
-                        {% endfor %}
-                    {% else %}
-                        {% for i in range(1,(itemcount//60) + 2) %}
-                            <li>
-                                <a href="javascript:turnTo({{ i }})">{{ i }}</a>
-                            </li>
-                        {% endfor %}
-                    {% endif %}
-                    <li>
-                        <a href="javascript:nextPage()">后一页<i class="fa fa-angle-right"></i></a>
-                    </li>
-                </ul>
-            </div>
-        {% endif %}
-
     </div>
 {% endblock %}
+
+
 
 {% block js %}
     <script src="static/plugin/sweetalert/sweetalert.min.js"></script>

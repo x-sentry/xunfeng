@@ -9,12 +9,12 @@ app:
     pwd: admin123
   strategy:
     brute:
-        timeout: 2
+        timeout: 2000000
         timeoutDesc: 超时时间
         limit: 20
         limitDesc: 攻击某端口数量上限
     scan:
-        timeout: 2
+        timeout: 2000000
         timeoutDesc: 超时时间
         limit: 1
         limitDesc: 扫描端口数量上限
@@ -50,8 +50,6 @@ services:
     port: 5902
   - name: Pcanywhere
     port: 5632
-  - name: http
-    port: 80
   - name: http
     port: 8080
   - name: http
