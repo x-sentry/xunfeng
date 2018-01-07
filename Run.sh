@@ -13,3 +13,5 @@ nohup mongod --port 27017 --dbpath=${XUNFENG_DB} --auth  > ${XUNFENG_LOG}/db.log
 nohup python ./aider/Aider.py > ${XUNFENG_LOG}/aider.log &
 nohup python ./nascan/NAScan.py > ${XUNFENG_LOG}/scan.log &
 nohup python ./vulscan/VulScan.py > ${XUNFENG_LOG}/vul.log &
+
+nohup python ./cruiser.py > ${XUNFENG_LOG}/cruiser.log &
