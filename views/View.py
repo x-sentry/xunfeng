@@ -672,11 +672,16 @@ def Login():
         account = request.form.get('account')
         password = request.form.get('password')
         loginCredential = app.config.get('loginCredential')
+        print loginCredential
+        print account
+        print password
         if account == loginCredential['name'] and password == loginCredential['pwd']:
             session['login'] = 'loginsuccess'
+            print 'login success'
             return redirect('/analysis')
         else:
-            return redirect(url_for('Login'))
+            print 'login failed'
+            return redirect('/login')
 
 
 # 登出异步
@@ -684,7 +689,7 @@ def Login():
 @logincheck
 def LoginOut():
     session['login'] = ''
-    return redirect(url_for('Login'))
+    return redirect('/login')
 
 
 @app.route('/404')
