@@ -11,7 +11,7 @@ class TestHackClient(object):
 
     def attack(self, port):
         self.handler = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.handler.connect(('localhost', port))
+        self.handler.connect(('47.93.35.216', port))
         try:
             msg = bytes("client send: test")
             self.handler.sendall(msg)

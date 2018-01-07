@@ -34,8 +34,6 @@ db:
 services:
   - name: ftp
     port: 21
-  - name: ssh
-    port: 22
   - name: telent
     port: 23
   - name: smtp
