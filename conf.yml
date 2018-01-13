@@ -9,14 +9,14 @@ app:
     pwd: admin123
   strategy:
     brute:
-        timeout: 2000000
+        timeout: 60
         timeoutDesc: 超时时间
         limit: 20
         limitDesc: 攻击某端口数量上限
     scan:
-        timeout: 2000000
+        timeout: 60
         timeoutDesc: 超时时间
-        limit: 1
+        limit: 10
         limitDesc: 扫描端口数量上限
 db:
     mongodb:
@@ -50,24 +50,12 @@ services:
     port: 5632
   - name: http
     port: 8080
-  - name: http
-    port: 8000
-  - name: https
-    port: 443
   - name: https
     port: 8443
   - name: jenkins
     port: 8089
-  - name: mysql
-    port: 3306
   - name: oracle
     port: 1521
-  - name: PostgreSQL
-    port: 5432
-  - name: mongodb
-    port: 27017
-  - name: redis
-    port: 6379
   - name: SysBase
     port: 5000
   - name: zabbix

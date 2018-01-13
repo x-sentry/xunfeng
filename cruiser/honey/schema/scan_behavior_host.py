@@ -5,13 +5,7 @@ import datetime
 
 class ScanBehaviorHost(Document):
     meta = {
-        'collection': 'scan_behavior_host',
-        'indexes': [
-            {
-                'fields': ['created'],
-                'expireAfterSeconds': 60 * 2
-            }
-        ]
+        'collection': 'scan_behavior_host'
     }
     """
     扫描类型的机器

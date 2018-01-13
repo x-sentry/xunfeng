@@ -5,13 +5,7 @@ import datetime
 
 class BruteBehaviorHost(Document):
     meta = {
-        'collection': 'brute_behavior_host',
-        'indexes': [
-            {
-                'fields': ['created'],
-                'expireAfterSeconds': 60*2
-            }
-        ]
+        'collection': 'brute_behavior_host'
     }
     """
     破解类型的机器

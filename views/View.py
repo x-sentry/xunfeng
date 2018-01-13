@@ -77,16 +77,31 @@ def cruiser():
 
     render_list = []
     for item in result:
-        del item['_id']
         render_list.append(item)
+
     print render_list
 
     service_in_monitor_list = Mongo.coll['service_in_monitor'].find()
     service_list = []
     for item in service_in_monitor_list:
-        del item['_id']
         service_list.append(item)
     return render_template('cruiser.html', renderList=render_list, serviceList=service_list, attack_type=attack_type)
+
+
+# 搜索结果页
+@app.route('/cruiser/alert/remove', methods=['post'])
+def cruiser_alert_remove():
+    _id = request.form.get('id')
+    attack_type = request.form.get('attackType')
+    try:
+        if attack_type == 'brute':
+            Mongo.coll['brute_behavior_host'].remove({'_id': ObjectId(_id)})
+        if attack_type == 'scan':
+            Mongo.coll['scan_behavior_host'].remove({'_id': ObjectId(_id)})
+        return jsonify({"result": True})
+    except Exception as e:
+        print e
+        return jsonify({"result": False})
 
 
 # 获取插件信息异步

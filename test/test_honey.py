@@ -11,7 +11,7 @@ class TestHackClient(object):
 
     def attack(self, port):
         self.handler = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.handler.connect(('47.93.35.216', port))
+        self.handler.connect(('localhost', port))
         try:
             msg = bytes("client send: test")
             self.handler.sendall(msg)
@@ -22,9 +22,30 @@ class TestHackClient(object):
             self.handler.close()
 
     def test_scan(self):
-        port_list = [8000, 8080, 22, 25, 389, 443, 53, 23, 21, 3306, 3389]
+        port_list = [22, 25, 389, 23, 21, 3389]
         for port in port_list:
             print port
+            self.attack(port=port)
+            self.attack(port=port)
+            self.attack(port=port)
+            self.attack(port=port)
+            self.attack(port=port)
+            self.attack(port=port)
+            self.attack(port=port)
+            self.attack(port=port)
+            self.attack(port=port)
+            self.attack(port=port)
+            self.attack(port=port)
+            self.attack(port=port)
+            self.attack(port=port)
+            self.attack(port=port)
+            self.attack(port=port)
+            self.attack(port=port)
+            self.attack(port=port)
+            self.attack(port=port)
+            self.attack(port=port)
+            self.attack(port=port)
+            self.attack(port=port)
             self.attack(port=port)
             self.attack(port=port)
             self.attack(port=port)
@@ -45,4 +66,4 @@ class TestHackClient(object):
         while x <= 20000:
             x += 1
             print x
-            self.attack(port=27017)
+            self.attack(port=3389)

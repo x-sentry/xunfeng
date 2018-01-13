@@ -115,16 +115,16 @@
 {% block webinfo %}
     <div class="container">
         <div class="row" style="margin-bottom: 20px">
-            <div class="col-sm-12" style="height: 38px;line-height: 38px;">
+            <div class="col-sm-8" style="height: 68px;line-height: 68px;">
                 <span style="float: left;position: relative;top: 3px;color: #cccccc;">当前监测服务列表：</span>
                 {% for service in serviceList %}
                     <div class="label label-purple"
-                         style="padding: 2px 6px;position:relative;float: left;margin: 0px 5px;top: 12px;">
+                         style="padding: 2px 6px;position:relative;float: left;margin: 4px 5px;top: 12px;">
                         {{ service['service_name'] }}:{{ service['port'] }}
                     </div>
                 {% endfor %}
             </div>
-            <div class="col-sm-12" style="height: 38px;line-height: 38px;">
+            <div class="col-sm-4" style="height: 38px;line-height: 38px;">
                 <form id="selectAttackType" method="get" action="/cruiser" role="form"
                       style="margin-right: 10px;color:white;background: rgba(0,128,128,0);float: right;">
                     <select class="form-control"
@@ -165,8 +165,23 @@
                             <div>
                                 <h4 class="m-t-0 m-b-5" style="height: 40px;line-height: 40px;padding-left: 10px">
                                     <i class="fa fa-desktop"
-                                       style="position:relative;top: 1px;font-size: 40px;display: inline-block;margin-right: 5px"></i>
-                                    <span style="position: relative; top: -10px;"> {{ i['ip'] }}</span>
+                                       style="color: #ff5b5b;position:relative;top: 1px;font-size: 40px;display: inline-block;margin-right: 5px">
+                                    </i>
+                                    <span style="position: relative; top: -10px;">
+                                        {% if attack_type=='brute' %}
+                                            疑似被攻陷IP=>{{ i['ip'] }}
+                                        {% endif %}
+
+                                        {% if attack_type=='scan' %}
+                                            疑似被攻陷IP=>{{ i['ip'] }}
+                                        {% endif %}
+                                    </span>
+                                    <i class="fa fa-trash tag"
+                                       title="删除该条告警"
+                                       data-attack-type="{{ attack_type }}"
+                                       data-id="{{ i['_id'] }}"
+                                       onclick="removeThisAlert(this)"
+                                       style="font-size: 20px;float: right;margin: 8px 5px 0px 0px ;;cursor: pointer;"></i>
                                 </h4>
                             </div>
                         </div>
@@ -179,23 +194,37 @@
                                 </div>
                             </div>
 
-                            <p class="text-purple m-b-10 font-13" style="margin-top: 3px">
+                            <p class="text-purple m-b-10 font-13"
+                               style="margin-top: 3px;margin-bottom: 3px !important;">
                                 <b>疑似攻击次数：</b>
                                 {{ i['times'] }}
+                            </p>
+
+                            <p class="text-purple m-b-10 font-13"
+                               style="margin-top: 0px;;margin-bottom: 3px !important;">
+                                <b>告警时间：</b>
+                                {{ i['created'].strftime('%Y-%m-%d %H:%M:%S') }}
                             </p>
                         {% endif %}
 
                         {% if attack_type=='scan' %}
                             <div style="margin-top: 8px">
-                                <b class="text-purple">扫描端口列表：</b>
+                                <b class="text-purple">被扫描端口：</b>
                                 {% for key,value in i.accessed_services.iteritems() %}
                                     <div class="label label-danger"
                                          style="padding: 2px 6px;position:relative;margin: 0px 3px;">
-                                        {{ key }}:{{ value }}
+                                        {{ value }}
                                     </div>
                                 {% endfor %}
                             </div>
+
+                            <p class="text-purple m-b-10 font-13"
+                               style="margin-top: 0px;;margin-bottom: 3px !important;">
+                                <b>被扫描时间：</b>
+                                {{ i['created'].strftime('%Y-%m-%d %H:%M:%S') }}
+                            </p>
                         {% endif %}
+
 
                     </div>
                 </div>
@@ -241,5 +270,24 @@
                         <p>9.多条件： 条件1:内容1;条件2:内容2  eg. ip:192.168.1.1;port:22</p></div>",
         });
         $("#cruiser-hook").css("background-color", "teal");
+    </script>
+
+    <script>
+        function removeThisAlert(that) {
+            var message = $(that).data();
+            $.post('/cruiser/alert/remove', message, function (e) {
+                console.dir(e)
+                if (e.result) {
+                    swal("已删除", '', "success");
+                    $('.confirm').click(function () {
+                        location.reload(true);
+                    })
+                }
+                else {
+                    swal("删除失败", '', "error");
+                }
+
+            })
+        }
     </script>
 {% endblock %}
