@@ -15,3 +15,4 @@ nohup python ./nascan/NAScan.py > ${XUNFENG_LOG}/scan.log &
 nohup python ./vulscan/VulScan.py > ${XUNFENG_LOG}/vul.log &
 
 nohup python ./cruiser.py > ${XUNFENG_LOG}/cruiser.log &
+
